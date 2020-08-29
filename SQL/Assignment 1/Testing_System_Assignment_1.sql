@@ -2,16 +2,19 @@ DROP DATABASE IF EXISTS TestingSystem;
 CREATE DATABASE TestingSystem;
 USE TestingSystem;
 
+-- Create table: department
 CREATE TABLE Department(
 	DepartmentID 	TINYINT UNSIGNED,
 	DepartmentName 	VARCHAR(50)
 );
 
+-- Create table: Position
 CREATE TABLE Position (
 	PositionID 		TINYINT UNSIGNED,
 	PositionName 	ENUM('Dev', 'Test', 'Scrum Master', 'PM')
 );
 
+-- Create table: Account
 CREATE TABLE `Account` (
 	AccountID 		TINYINT UNSIGNED,
 	Email 			VARCHAR(50),
