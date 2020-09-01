@@ -10,7 +10,7 @@ USE TestingSystem;
 
 -- create table 1: Department
 CREATE TABLE Department(
-	DepartmentID 	TINYINT UNSIGNED PRIMARY KEY,
+	DepartmentID 	TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	DepartmentName 	VARCHAR(50) UNIQUE KEY NOT NULL
 );
 
@@ -25,28 +25,28 @@ CREATE TABLE Position (
     CREATE TABLE `Account` (
 	AccountID 		SMALLINT UNSIGNED PRIMARY KEY,
 	Email 			VARCHAR(50) UNIQUE KEY NOT NULL,
-	User_name		VARCHAR(50) UNIQUE KEY NOT NULL,
-	Full_name 		VARCHAR(50) NOT NULL,
-	DepartmentID	TINYINT UNSIGNED,
-	PositionID		TINYINT UNSIGNED,
-	CreateDate		DATE,
+	User_name		VARCHAR(50) UNIQUE KEY NOT NULL CHECK (LENGTH(User_name) >= 6),
+	Full_name 		VARCHAR(50) NOT NULL CHECK (LENGTH(Full_name) >= 10),
+	DepartmentID	TINYINT UNSIGNED DEFAULT (2),
+	PositionID		TINYINT UNSIGNED DEFAULT('1'),
+	CreateDate		DATETIME DEFAULT NOW(),
     FOREIGN KEY (DepartmentID) REFERENCES Department (DepartmentID),
-     FOREIGN KEY (PositionID) REFERENCES Position (PositionID)
+	FOREIGN KEY (PositionID) REFERENCES Position (PositionID)
 );
 
 -- create table 4: Group
 CREATE TABLE `Group`(
 	GroupID 		SMALLINT UNSIGNED PRIMARY KEY,
 	GroupName 		VARCHAR(50) UNIQUE KEY NOT NULL,
-	CreatorID		SMALLINT UNSIGNED NOT NULL,
-	CreateDate		DATE,
+	CreatorID		SMALLINT UNSIGNED CHECK (CreatorID > 0 AND CreatorID < 8),
+	CreateDate		DATETIME DEFAULT NOW(),
     FOREIGN KEY (CreatorID) REFERENCES `Account` (AccountID)
 );
 
 -- create table 5: GroupAccount
 CREATE TABLE GroupAccount (
 	GroupID 		SMALLINT UNSIGNED NOT NULL,
-	AccountID 		SMALLINT UNSIGNED NOT NULL,
+	AccountID 		SMALLINT UNSIGNED NOT NULL CHECK (AccountID <8),
 	JoinDate		DATE NOT NULL,
    PRIMARY KEY(GroupID, AccountID),
    FOREIGN KEY (GroupID) REFERENCES `Group` (GroupID)
@@ -72,7 +72,7 @@ CREATE TABLE Question (
 	CategoryID		SMALLINT UNSIGNED NOT NULL,
 	TypeID			SMALLINT UNSIGNED NOT NULL,
 	CreatorID		SMALLINT UNSIGNED NOT NULL,
-	CreateDate		DATE,
+	CreateDate		DATETIME DEFAULT NOW(),
     FOREIGN KEY (CategoryID) REFERENCES CategoryQuestion (CategoryID),
     FOREIGN KEY (TypeID) REFERENCES TypeQuestion (TypeID),
     FOREIGN KEY (CreatorID) REFERENCES `Account` (AccountID)
@@ -93,7 +93,7 @@ CREATE TABLE Exam (
 	ExamID	 	TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	`Code`		CHAR(10) UNIQUE KEY NOT NULL,
     Title		VARCHAR(50) NOT NULL,
-    CategoryID	SMALLINT UNSIGNED,
+    CategoryID	SMALLINT UNSIGNED ,
     Duration	TINYINT UNSIGNED NOT NULL,
     CreatorID	SMALLINT UNSIGNED NOT NULL,
     CreateDate	DATE NOT NULL,
@@ -175,7 +175,7 @@ VALUES
 								('ADO.NET'		),
 								('SQL'			);
                                 
-INSERT INTO Question (Content,									TypeID,						CategoryID, 	CreatorID, CreateDate)
+INSERT INTO Question (Content,									TypeID,						CategoryID, 	CreatorID, 		CreateDate)
 VALUES
 
 					(N'Java là gì',								2,							1,				'2',			'2020-02-11'),
