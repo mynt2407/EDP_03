@@ -1,8 +1,7 @@
 -- Question 2: Query all the trainees who is passed the entry test, group them into different birth months
-SELECT *
-FROM `Trainee table`
-GROUP BY Birth_Date
- ;
+SELECT 		GROUP_CONCAT(Full_Name), GROUP_CONCAT(YEAR(Birth_Date), '-', MONTH(Birth_Date))
+FROM		`Trainee table`
+GROUP BY 	MONTH(Birth_Date), YEAR(Birth_Date);
  
  -- Question 3: Query the trainee who has the longest name
  SELECT *
@@ -18,7 +17,7 @@ GROUP BY Birth_Date
 
 SELECT *
 FROM `Trainee table`
-WHERE ET_IQ >= 8 AND ET_Gmath >= 8 AND ET_English >= 18 AND (SELECT SUM(ET_IQ + ET_Gmath >= 20))
+WHERE ET_IQ >= 8 AND ET_Gmath >= 8 AND ET_English >= 18 AND (ET_IQ + ET_Gmath >= 20)
 ;
 
 -- Question 5: Delete information of trainee who has TraineeID = 3

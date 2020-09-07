@@ -35,7 +35,7 @@ FROM 	`Group`
 WHERE 	CreateDate < '2019-12-20';
 
 -- Question 7: Lấy ra ID của question có >= 2 câu trả lời
-SELECT 		QuestionID
+SELECT 		QuestionID, GROUP_CONCAT(AnswerID SEPARATOR '.') AS 'so_lương' -- LIỆT KÊ CỤ THỂ SỐ LƯỢNG, KO CHỈ THỐNG KÊ NHƯ COUNT
 FROM 		Answer
 GROUP BY 	QuestionID
 HAVING 		COUNT(AnswerID) >= 2;	
