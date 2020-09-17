@@ -7,20 +7,13 @@ WHERE 		HD.Masv IS NULL;
 
 -- b) Lấy ra số sinh viên nghiên cứu đề tài ‘Nghiên cứu virus PRRS’
 
-WITH 		STUDENT_RESEARCH AS (
-SELECT 		S.Hoten, HD.Masv, HD.MaDT, group_concat(HD.MaDT)
+SELECT 		*
 FROM  		SinhVien S
 JOIN	 	Huongdan HD ON S.Masv = HD.Masv
+JOIN 		DeTai DT ON DT.MaDT = HD.MaDT
+WHERE 		DT.TenDT LIKE 'Nghiên cứu virus PRRS'
 GROUP BY 	HD.Masv
-HAVING 		COUNT(HD.MaDT))
-
-SELECT	 *
-FROM 	DeTai D
-JOIN 	Huongdan HD ON SR.MaDT = D.MaDT
-WHERE 	D.TenDT LIKE 'Nghiên cứu virus PRRS'
-GROUP BY SR.MaDT
-HAVING 
-;
+HAVING 		COUNT(HD.MaDT);
 
 -- Tạo view có tên là "SinhVienInfo" lấy các thông tin về học sinh bao gồm:
 -- mã số, họ tên và tên đề tài
@@ -29,14 +22,19 @@ HAVING
 DROP VIEW IF EXISTS SinhVienInfo;
 CREATE VIEW SinhVienInfo AS 
 
-SELECT 		*
-FROM 		SinhVien S
-JOIN 		Huongdan HD ON S.Masv = HD.Masv
-;
+SELECT		 *
+FROM 		SinhVien S 
+LEFT JOIN 	Huongdan HD ON S.Masv = HD.Masv
+LEFT JOIN 	DeTai DT ON DT.MaDT = HD.MaDT;
 
-SELECT 	*
-FROM 	SinhVienInfo SV
-JOIN	DeTai D ON SV.MaDT = D.MaDT ;
+SELECT *,
+CASE 
+	WHEN 	DT.ID IS NULL THEN 'Chưa có'
+	ELSE 	'Đã có'
+END	AS 	bai_thi
+FROM 	SinhVienInfo
+GROUP BY DT.ID;
+
 
 -- Tạo trigger cho table SinhVien khi insert sinh viên có năm sinh <= 1900
 -- thì hiện ra thông báo "năm sinh phải > 1900"
