@@ -7,7 +7,7 @@ CREATE VIEW DANH_MUC_TEN AS
 SELECT		P.`Name`
 FROM 		ProductSubcategory PST
 JOIN 		Product P ON PST.ProductSubcategoryID = P.ProductSubcategoryID
-WHERE 		P.ProductSubcategoryID = (SELECT PST.ProductSubcategoryID
+WHERE 		P.ProductSubcategoryID IN (SELECT PST.ProductSubcategoryID
 									FROM 	adventureworks.productsubcategory PST
 									WHERE 	PST.`Name` = 'Saddles')
 ;
@@ -21,6 +21,12 @@ WHERE 		PST.ProductSubcategoryID IN (SELECT P.ProductSubcategoryID
 									WHERE 	P.`Name` LIKE '%Bo%')
 ORDER BY 	P.`Name` DESC;
 
+-- Code lai
+SELECT		P.`Name`
+FROM 		ProductSubcategory PST
+JOIN 		Product P ON PST.ProductSubcategoryID = P.ProductSubcategoryID
+WHERE 		P.`Name` LIKE '%Bo%';
+
 -- Question 3: Viết câu query trả về tất cả các sản phẩm có giá rẻ nhất (lowest ListPrice) và 
 -- Touring Bike (nghĩa là ProductSubcategoryID = 3)
 
@@ -33,6 +39,7 @@ WHERE 		P.ProductSubcategoryID  = 3 AND P.ListPrice =	(SELECT 	MIN(P.ListPrice)
                                                             WHERE 		P.ProductSubcategoryID  = 3					
                                                             )
 ;
+-- LÀM THÊM CTE
 
 -- Exercise 2: JOIN nhiều bảng
 -- Question 1: Viết query lấy danh sách tên country và province được lưu trong AdventureWorks2008 sample database. 
@@ -76,6 +83,6 @@ SELECT 	SOH.SalesOrderID, SOH.OrderDate, SP.SalesPersonID, SP.Bonus, SP.SalesYTD
 FROM 	SalesPerson SP 
 JOIN 	salesorderheader SOH ON SP.SalesPersonID = SOH.SalesPersonID)
 SELECT *
-FROM INFORMATION; 
+FROM 		INFORMATION; 
 ALTER TABLE INFORMATION
 ADD 		JobTitle VARCHAR(50) UNIQUE KEY NOT NULL;

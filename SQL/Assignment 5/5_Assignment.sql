@@ -1,7 +1,5 @@
 
 -- Question 1: Tạo view có chứa danh sách nhân viên thuộc phòng ban sale
-SELECT *
-FROM DANH_SACH_NHAN_VIEN_SALE;
 
 -- cách 1: dùng join và where
 DROP VIEW IF EXISTS DANH_SACH_NHAN_VIEN_SALE;
@@ -10,6 +8,9 @@ SELECT  	A.Full_name, D.DepartmentID
 FROM 		Department D
 JOIN		`Account` A ON A.DepartmentID = D.DepartmentID
 WHERE 		D.DepartmentName = 'Sale' ;
+ 
+ SELECT *
+FROM DANH_SACH_NHAN_VIEN_SALE;
 
 -- Cách 2: Dùng Sub-Query 
 DROP VIEW IF EXISTS DANH_SACH_NHAN_VIEN_SALE_MOI;
@@ -27,6 +28,7 @@ WHERE 		D.DepartmentID = (SELECT D.DepartmentID
 -- CÁCH 1:
 DROP VIEW IF EXISTS ACCOUNT_THAM_GIA_NHIEU_NHAT;
 CREATE VIEW ACCOUNT_THAM_GIA_NHIEU_NHAT AS
+
 SELECT *
 FROM  	`Account` A
 JOIN	 GroupAccount GA ON A.AccountID = GA.AccountID
@@ -41,9 +43,8 @@ SELECT *
 FROM ACCOUNT_THAM_GIA_NHIEU_NHAT; 
 
 -- CÁCH 2: DÙNG SUBQUERY 
-SELECT 	A.AccountID, A.Full_name
+SELECT 	*
 FROM 	`Account` A
-JOIN 	`GroupAccount` GA ON A.AccountID = GA.AccountID
 WHERE 	A.AccountID = (
 					SELECT A.AccountID
 					FROM `Account` A
@@ -69,23 +70,32 @@ DROP VIEW IF EXISTS LENGTH_CONTENT;
 CREATE VIEW LENGTH_CONTENT AS 
 SELECT 	*
 FROM 	Question
-WHERE 	LENGTH(Content) > 20 ;
+WHERE 	LENGTH(Content) > 20;
 
 SELECT *
 FROM 	LENGTH_CONTENT;
 
+DELETE 
+FROM 	LENGTH_CONTENT 
+WHERE 	LENGTH(Content) > 20;
+
 -- Question 4: Tạo view có chứa danh sách các phòng ban có nhiều nhân viên nhất
--- Cách 1: Dùng subquery 
+-- Cách 1: Dùng view 
 
 DROP VIEW IF EXISTS MAX_NHAN_VIEN;
 CREATE VIEW MAX_NHAN_VIEN AS
+
 SELECT	D.DepartmentID, D.DepartmentName
-FROM 	Department D, `Account` A
-WHERE 	D.DepartmentID = A.DepartmentID AND  D.DepartmentID  = (
-																SELECT  A.DepartmentID
-																FROM 	`Account` A
-																WHERE	 A.DepartmentID = 1
-                                                                LIMIT 	1)                                                                
+FROM 	Department D
+JOIN 	`Account` A ON A.DepartmentID = D.DepartmentID
+GROUP BY A.DepartmentID
+HAVING 	COUNT(A.DepartmentID) =  (
+									SELECT  	COUNT(DepartmentID)
+									FROM 		`Account` A
+									GROUP BY	DepartmentID
+                                    HAVING 		COUNT(DepartmentID)
+                                    ORDER BY 	COUNT(DepartmentID) DESC
+									LIMIT 		1)                                                                
 ;
 SELECT *
 FROM MAX_NHAN_VIEN;
@@ -115,3 +125,6 @@ WHERE 		A.Full_name LIKE 'Nguyễn%'
 ;
 SELECT *
 FROM CREATOR_NGUYEN;
+
+/*====================================== CHỮA BÀI=================== =================== */
+-- Question 3: Tạo view có chứa câu hỏi có những content quá dài (content quá 20 từ được coi là quá dài) và xóa nó đi
