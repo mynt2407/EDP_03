@@ -47,7 +47,7 @@ SELECT 	*
 FROM 	`Account` A
 WHERE 	A.AccountID = (
 					SELECT A.AccountID
-					FROM `Account` A
+					FROM `Account` A 
 					WHERE A.AccountID  = 4)
 ;
 -- CÁCH 3: DÙNG CTE:

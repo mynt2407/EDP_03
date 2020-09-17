@@ -160,7 +160,7 @@ ELSE
 END IF;
 END$$
 DELIMITER ;
- CALL out_put_many_result (N'Nguyễn Thế Hưng', 'hungnguyen@gmail.com');
+call out_put_many_result (N'Nguyễn Thế Hưng', 'hungnguyen@gmail.com');
 
 -- Question 8: Viết 1 store cho phép người dùng nhập vào Essay hoặc Multiple-Choice
  -- để thống kê câu hỏi essay hoặc multiple-choice nào có content dài nhất
@@ -182,9 +182,17 @@ END$$
 DELIMITER ; 
 
 CALL type_question_max('Essay');
+-- Question 9: Viết 1 store cho phép người dùng xóa exam dựa vào ID
+
+
 
 -- Question 10: Tìm ra các exam được tạo từ 3 năm trước và xóa các exam đó đi (sử
  -- dụng store ở câu 9 để xóa)
  -- Sau đó in số lượng record đã remove từ các table liên quan trong khi removing
  
- 
+--  Question 12: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo trong năm nay
+-- (Nếu tháng nào không có thì sẽ in ra là "không có câu hỏi nào trong tháng")
+
+
+
+
