@@ -159,25 +159,26 @@ FOR EACH ROW
 BEGIN
 
 DECLARE No_of_answers TINYINT UNSIGNED;
+DECLARE No_of_correct_answers TINYINT UNSIGNED;
 
-SELECT 	COUNT(QuestionID) AS so_cau_hoi INTO No_of_answers
+SELECT 	COUNT(QuestionID) INTO No_of_answers
 FROM 	Answer
 WHERE  	QuestionID = NEW.QuestionID;
 
-SELECT 
-FROM so_cau_hoi
-WHERE 
+SELECT 	COUNT(QuestionID) INTO No_of_correct_answers
+FROM 	Answer
+WHERE  	QuestionID = NEW.QuestionID AND isCorrect = 'đúng';
 
-IF  No_of_answers = 4 AND isCorrect = 'đúng' THEN
-SIGNAL SQLSTATE '12345'
-SET MESSAGE_TEXT = 'Can not add more answers';
+IF  No_of_answers >= 4 OR No_of_correct_answers >= 2 THEN
+	SIGNAL SQLSTATE '12345'
+	SET MESSAGE_TEXT = 'Can not add more answers';
 END IF;
 END $$
 DELIMITER ;
 
 INSERT INTO `Answer` (QuestionID,	Content, 							isCorrect)
 VALUES
-					(1, 			'là ngôn ngữ lập trình',			'đúng');
+					(3, 			'là ngôn ngữ lập trình',			'đúng');
 
 -- Question 8: Viết trigger sửa lại dữ liệu cho đúng:
 --  Nếu người dùng nhập vào gender của account là nam, nữ, chưa xác định
@@ -239,11 +240,66 @@ DELETE
 FROM Exam
 WHERE CreateDate = '2020-09-15';
 
+-- Question 10: Viết trigger chỉ cho phép người dùng chỉ được update, delete các
+--  question khi question đó chưa nằm trong exam nào
 
+-- DELETE
+DROP TRIGGER IF EXISTS delete_update_question;
+DELIMITER $$
 
+CREATE TRIGGER delete_update_question
+BEFORE DELETE ON `Question`
+FOR EACH ROW
+BEGIN
 
+DECLARE Exam_Amout TINYINT UNSIGNED;
+SELECT OLD.QuestionID INTO Exam_Amout;
 
+SELECT 	COUNT(1) INTO Exam_Amout
+FROM 	Question Q
+JOIN	 ExamQuestion EQ ON EQ.QuestionID = Q.QuestionID
+WHERE	 Q.QuestionID = OLD.QuestionID;
 
+IF Exam_Amout > 0  THEN
+SIGNAL SQLSTATE '12345'
+SET MESSAGE_TEXT = 'Can not delete';
+END IF;
+
+END $$
+DELIMITER ;
+
+DELETE 
+FROM Question
+WHERE QuestionID = '2';
+
+-- UPDATE
+DROP TRIGGER IF EXISTS update_question;
+DELIMITER $$
+
+CREATE TRIGGER update_question
+BEFORE UPDATE ON `Question`
+FOR EACH ROW
+BEGIN
+
+DECLARE Question_Amout TINYINT UNSIGNED;
+SELECT OLD.QuestionID INTO Question_Amout;
+
+SELECT 	COUNT(1) INTO Question_Amout
+FROM 	Question Q
+JOIN	 ExamQuestion EQ ON EQ.QuestionID = Q.QuestionID
+WHERE	 Q.QuestionID = OLD.QuestionID;
+
+IF Question_Amout > 0  THEN
+SIGNAL SQLSTATE '12345'
+SET MESSAGE_TEXT = 'Can not update';
+END IF;
+
+END $$
+DELIMITER ;
+
+UPDATE	Question
+SET 	QuestionID = 2
+WHERE 	QuestionID = 4;
 
 -- Question 12: Lấy ra thông tin exam trong đó:
 -- Duration <= 30 thì sẽ đổi thành giá trị "Short time"
@@ -286,4 +342,27 @@ DELIMITER ;
 
 INSERT INTO  `Account` (AccountID, 		Email, 						User_name, 				Full_name, 			DepartmentID,	PositionID)
 VALUES
-						(1,			'nguyenthehung',				'hungnguyen',				N'Nguyễn Thế Hưng',		1,			4)
+						(1,			'nguyenthehung',				'hungnguyen',				N'Nguyễn Thế Hưng',		1,			4);
+                        
+-- Question 13: Thống kê số account trong mỗi group và in ra thêm 1 column nữa có tên
+--  là the_number_user_amount và mang giá trị được quy định như sau:
+-- Nếu số lượng user trong group =< 5 thì sẽ có giá trị là few
+-- Nếu số lượng user trong group <= 20 và > 5 thì sẽ có giá trị là normal
+-- Nếu số lượng user trong group > 20 thì sẽ có giá trị là higher
+
+SELECT 		GroupID, COUNT(AccountID) AS so_luong_user, GROUP_CONCAT(AccountID)
+FROM 		GroupAccount
+GROUP BY 	GroupID
+;
+ALTER TABLE GroupAccount
+ADD the_number_user_amount TINYINT UNSIGNED;
+
+SELECT the_number_user_amount,
+CASE 
+	WHEN 	so_luong_user <= 5 THEN 'Few'
+	WHEN 	so_luong_user <= 20 THEN 'Normal'
+	ELSE 	'High'
+END	AS 	so_nv
+FROM 	GroupAccount
+GROUP BY so_luong_user;
+

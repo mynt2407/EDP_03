@@ -29,11 +29,10 @@ LEFT JOIN 	DeTai DT ON DT.MaDT = HD.MaDT;
 
 SELECT *,
 CASE 
-	WHEN 	DT.ID IS NULL THEN 'Chưa có'
+	WHEN 	ID IS NULL THEN 'Chưa có'
 	ELSE 	'Đã có'
 END	AS 	bai_thi
-FROM 	SinhVienInfo
-GROUP BY DT.ID;
+FROM 	SinhVienInfo;
 
 
 -- Tạo trigger cho table SinhVien khi insert sinh viên có năm sinh <= 1900
