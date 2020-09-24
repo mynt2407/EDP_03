@@ -1,0 +1,13 @@
+import java.util.Date;
+import java.util.Timer;
+
+public class Exam {
+int id;
+String code;
+String title;
+CategoryQuestion category;
+Timer duration;
+Account creatorID;
+Date createDate;
+Question [] questions;
+}

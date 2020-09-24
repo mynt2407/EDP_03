@@ -1,0 +1,20 @@
+
+public class InClass_lession2 {
+	public static void main(String[] args) {
+		
+	
+		Department department1 = new Department();
+		department1.id = 1;
+		department1.name = "Sale";
+		
+if(department1.id == 1 && department1.name.equals("Sale"));
+{
+System.out.println("Day la phong ban dau tien"); 
+} 
+else {
+	System.out.println("Day khong phai la phong dau tien" + department1.name.equal()); }
+
+
+
+	}
+}

@@ -1,0 +1,6 @@
+
+public enum TypeQuestion {
+	ESSAY , MULTIPLE_CHOICE;
+}
+
+

@@ -1,0 +1,5 @@
+
+public class TypeQuestion {
+byte TypeID;
+enum  TypeName { ESSAY, MULTIPLE_CHOICE
+};

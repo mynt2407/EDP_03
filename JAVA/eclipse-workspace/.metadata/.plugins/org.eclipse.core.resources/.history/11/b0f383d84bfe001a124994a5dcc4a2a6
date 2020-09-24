@@ -1,0 +1,24 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class test {
+public static void main(String[] args) {
+	
+	Scanner scanner1 = new Scanner(System.in);
+	String dateInput = input.next();
+
+	String pattern = "dd/MM/yyyy";
+	SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+	Date birthday = dateFormat.parse(dateInput);
+	System.out.println("Ngay sinh cua ban la:" + birthday);
+	
+	scanner1.close();
+	
+	
+
+	
+	
+	
+}
+}
