@@ -6,6 +6,33 @@ import java.util.Scanner;
 
 public class System_out_printf {
 	public static void main(String[] args) throws ParseException {
+		// create account
+
+		Account account1 = new Account();
+		account1.id = 1;
+		account1.email = "duynguyen1@gmail.com";
+		account1.userName = "duy.nguyenngoc";
+		account1.fullName = "Nguyen Ngoc Duy";
+		account1.createDate = new Date(95, 11, 20);
+		account1.gender = Gender.MALE;
+
+		Account account2 = new Account();
+		account2.id = 2;
+		account2.email = "mynt2407@gmail.com";
+		account2.userName = "mynguyen";
+		account2.fullName = "Nguyen Thi My";
+		account2.createDate = new Date(93, 10, 01);
+		account2.gender = Gender.UNKNOW;
+
+		Account account3 = new Account();
+		account3.id = 3;
+		account3.email = "tongnhung@gmail.com";
+		account3.userName = "nhung.tong";
+		account3.fullName = "Tong Thi Nhung";
+		account3.createDate = new Date(91, 0, 12);
+		account3.gender = Gender.FEMALE;
+		
+		Account [] accounts = { account1, account2, account3};
 
 //	Question 1:
 //		Khai báo 1 số nguyên = 5 và sử dụng lệnh System out printf để in ra số nguyên đó
@@ -51,6 +78,11 @@ public class System_out_printf {
 //	Question 6:
 //		In ra thông tin account (như Question 8 phần FOREACH) theo định dạng
 //table (giống trong Database)
+		System.out.printf("%-30s %-30s %-30s \n", "Id", "Fullname", "Email" );
+		System.out.printf("%-30d %-30s %-30s \n" , account1.id , account1.fullName , account1.email);
+		System.out.printf("%-30d %-30s %-30s \n" , account2.id , account2.fullName , account2.email);
+		System.out.printf("%-30d %-30s %-30s \n" , account3.id , account3.fullName , account3.email);
+		
 
 //Vi du:
 

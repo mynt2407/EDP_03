@@ -11,4 +11,5 @@ Date createDate;
 Gender gender;
 GroupAccount[] groups;
 Account[] accounts;
+public String name;
 }

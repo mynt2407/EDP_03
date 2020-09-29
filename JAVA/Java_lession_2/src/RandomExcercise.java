@@ -4,8 +4,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomExcercise {
 	public static void main(String[] args) {
-		//randomNumber();
-		//randomName();
+		randomNumber();
+		randomName();
 		randomDate();
 	}
 
@@ -79,10 +79,6 @@ public class RandomExcercise {
 		randomInt = now - random.nextInt(365);
 		randomDay = LocalDate.ofEpochDay(randomInt);
 		System.out.println(randomDay);
-		
-		
-		
-		
 		
 		
 
