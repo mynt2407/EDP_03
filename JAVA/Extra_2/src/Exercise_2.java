@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import com.sun.java.swing.action.NextAction;
-
 public class Exercise_2 {
 	public static void main(String[] args) {
 //	Question 1:

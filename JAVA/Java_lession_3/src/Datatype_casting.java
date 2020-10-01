@@ -45,10 +45,12 @@ public class Datatype_casting {
 //con số 0 ở đầu cho đủ 5 chữ số)
 
 	public static void question2() {
+		
 		Random random = new Random();
 		int x = random.nextInt(99999 - 0 + 1) + 0;
 		System.out.println(x);
-		String y = String.valueOf(x);
+		
+		String y = String.valueOf(x); // String y = x + "";
 		System.out.println("Do dai cua so do la: " + y.length());
 		switch (y.length()) {
 		case 1:

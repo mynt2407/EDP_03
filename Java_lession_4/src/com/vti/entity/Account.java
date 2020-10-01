@@ -1,3 +1,4 @@
+package com.vti.entity;
 import java.util.Date;
 
 public class Account {

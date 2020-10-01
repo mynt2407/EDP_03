@@ -16,7 +16,9 @@ public class String_exercise {
 //		question11();
 //		question12();
 //		question13();
-		question14();
+//		question14();
+//		question15();
+		question16();
 	}
 
 	public static void question1() {
@@ -182,23 +184,30 @@ public class String_exercise {
 		}
 
 	}
+
 	// Question 9: In ra tất cả các group "Java"
 	public static void question9() {
 		// create group
-				Group group1 = new Group();
-				group1.id = 1;
-				group1.groupName = "Nhom Java Fresher";
+		Group group1 = new Group();
+		group1.id = 1;
+		group1.groupName = "Nhom Java Fresher";
 
-				Group group2 = new Group();
-				group2.id = 2;
-				group2.groupName = "Nhom C# Fresher, Java";
+		Group group2 = new Group();
+		group2.id = 2;
+		group2.groupName = "Java";
 
-				Group group3 = new Group();
-				group3.id = 3;
-				group3.groupName = "Nhom PHP Fresher";
-				Group[] groups = { group1, group2, group3 };
-				
-				
+		Group group3 = new Group();
+		group3.id = 3;
+		group3.groupName = "Nhom PHP Fresher";
+		Group[] groups = { group1, group2, group3 };
+
+		for (int i = 0; i < groups.length; i++) {
+			if (groups[i].groupName.equals("Java")) {
+				System.out.println("ID: " + groups[i].id);
+				System.out.println("Name: " + groups[i].groupName);
+			}
+		}
+
 	}
 
 //	Question 10 (Optional):
@@ -293,9 +302,52 @@ public class String_exercise {
 //	Ví dụ:
 //	"VTI Academy" chuyển ký tự 'e' sang '*' kết quả " VTI Acad*my"
 	public static void question14() {
-		
+
 		String string = "mymynguyen";
-		String string1 = string.replace("m","*");
+		String string1 = string.replace("m", "*");
 		System.out.println(string1);
+	}
+
+//	Question 15 (Optional): Revert string by word thư viện.
+//	Ví dụ: " I am developer " => "developer am I".
+//	Các ký tự bên trong chỉ cách nhau đúng một dấu khoảng cách.
+//	Gợi ý: Các bạn cần loại bỏ dấu cách ở đầu và cuối câu, thao tác cắt chuỗi theo dấu cách
+
+	public static void question15() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("moi ban nhap vao mot chuoi ki tu: ");
+		String input = scanner.nextLine();
+
+		input = input.trim();
+		input = input.replaceAll("\\s+", " ");
+		String reverse = "";
+		for (int i = input.length() - 1; i >= 0; i--) {
+			reverse = reverse + input.charAt(i);
+		}
+		System.out.println("Chuoi dao nguoc la: " + reverse);
+	}
+//	Question 16 (Optional):
+//		Cho một chuỗi str và số nguyên n >= 0. Chia chuỗi str ra làm các phần
+//		bằng nhau với n ký tự. Nếu chuỗi không chia được thì xuất ra màn hình “KO”
+
+	public static void question16() {
+
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.print("Moi ban nhap vao 1 chuoi bat ki: ");
+		String inputS = scanner.nextLine();
+		inputS = inputS.replaceAll("\\s+", "");
+		inputS = inputS.trim();
+
+		System.out.print("Moi ban nhap vao so nguyen bat ki: ");
+		int ints = scanner.nextInt();
+
+		int x = inputS.length() % ints;
+		if (x != 0) {
+			System.out.println("KO!");
+		} else {
+			System.out.println("Chuoi nay duoc chia thanh " + inputS.length() / ints + " bang nhau");
+		}
+
 	}
 }
