@@ -1,8 +1,13 @@
 
 public class Department {
-	byte id;
+	int id;
 	String name;
 	Account[] accounts;
+
+	public Department(int i, String name) {
+		this.id = 0;
+		this.name = name;
+	}
 
 //	@Override
 	public String toString() {

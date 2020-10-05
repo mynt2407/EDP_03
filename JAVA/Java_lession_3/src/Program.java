@@ -6,17 +6,14 @@ public class Program {
 
 		// create department
 
-		Department department1 = new Department();
-		department1.id = 1;
-		department1.name = "Sale";
+		Department department1 = new Department(1, "Sale");
 
-		Department department2 = new Department();
-		department2.id = 2;
-		department2.name = "Marketing";
 
-		Department department3 = new Department();
-		department3.id = 3;
-		department3.name = "Director";
+		Department department2 = new Department(2, "Marketing");
+	
+
+		Department department3 = new Department(3, "Director");
+
 
 		// create group
 		Group group1 = new Group();
