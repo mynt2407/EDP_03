@@ -58,16 +58,30 @@ public class Exercise4_Encapsulation {
 		student.getName();
 		student.getPoint2();
 	}
+
 //	Question 2 (Optional): Tạo class phù hợp cho thiết kế sau:
 	public static void question2() {
 //		Account1 account = new Account1("abc123", "my", 20);
 //		account.debit(30);
 //		System.out.println("\n");
 //		account.credit(50);
-		
+
 //		Account1 account1 = new Account1("mynguyen123", "mynt", 60);
-		Date1 date = new Date1(20, 3, 100);
-		System.out.println(date.getDay());
+//		Date1 date = new Date1(20, 3, 100);
+//		System.out.println(date.getDay());
+
+		int months[] = { 1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+		for (int j = 0; j < months.length -1 ; j++) {
+
+			for (int i = 0; i < months.length  ; i++) {
+				if (months[i] == months[i] + 1) {
+					System.out.println("Nam nay la nam nhuan!");
+					break;
+				} else {
+					System.out.println("Nam nay khong phai nam nhuan!");
+				}
+			}
+		}
 	}
-	
+
 }

@@ -7,14 +7,16 @@ import com.vti.entity.CongNhan;
 import com.vti.entity.HighSchoolStudent;
 import com.vti.entity.KySu;
 import com.vti.entity.NhanVien;
+import com.vti.entity.QLCB;
+import com.vti.entity.QLS;
 
 public class Excercise5_Inheritance {
 	public static void main(String[] args) {
+
 //		question1();
-//		question2a();
-//		question2b();
-		question2c();
+		question2();
 //		question3();
+//		question4();
 
 	}
 
@@ -27,21 +29,21 @@ public class Excercise5_Inheritance {
 //Hãy xây dựng các lớp CongNhan, KySu, NhanVien kế thừa từ lớp CanBo
 
 	public static void question1() {
-//		CongNhan congNhan = new CongNhan("Tran Van Toan", (byte) 20, "Male", (byte) 8);
-//		System.out.println(congNhan.getName());
-//		System.out.println(congNhan.getLevel());
-//		System.out.println("\n");
-//
-//		KySu kySu = new KySu("Nguyen The Hung", (byte) 30, "Male", "manager");
-//		System.out.println(kySu.getTrainingIndustry());
-//		System.out.println("\n");
-//
-//		NhanVien nhanVien = new NhanVien("Tran Lam Anh", (byte) 37, "Female", "Diretor");
-//		System.out.println(nhanVien.getWork());
-//		System.out.println(nhanVien.getSex());
+		CongNhan congNhan = new CongNhan("Tran Van Toan", (byte) 20, "Male", (byte) 8);
+		System.out.println(congNhan.getName());
+		System.out.println(congNhan.getLevel());
+		System.out.println("\n");
 
-		KySu kySu = new KySu();
-		System.out.println(kySu);
+		KySu kySu = new KySu("Nguyen The Hung", (byte) 30, "Male", "manager");
+		System.out.println(kySu.getTrainingIndustry());
+		System.out.println("\n");
+
+		NhanVien nhanVien = new NhanVien("Tran Lam Anh", (byte) 37, "Female", "Diretor");
+		System.out.println(nhanVien.getWork());
+		System.out.println(nhanVien.getSex());
+
+//		KySu kySu = new KySu();
+//		System.out.println(kySu);
 	}
 
 //	Question 2: Tiếp tục Question 1
@@ -49,50 +51,14 @@ public class Excercise5_Inheritance {
 //	d) Nhập vào tên của cán bộ và delete cán bộ đó
 //	e) Thoát khỏi chương trình.
 
-//	a) Thêm mới cán bộ
-	public static void question2a() {
+	public static void question2() {
+		QLCB qlcb = new QLCB();
+		qlcb.themMoi();
+		qlcb.findName();
+		qlcb.delete();
+		qlcb.print();
 
-		@SuppressWarnings("resource")
-		Scanner scanner = new Scanner(System.in);
-
-		System.out.print("Moi ban nhap so can bo muon nhap: ");
-		int x = scanner.nextInt();
-
-		byte y;
-		for (int i = 0; i < x; i++) {
-			System.out.println("Moi ban chon can bo can nhap: 1: Cong Nhan || 2: Ky Su || 3: Nhan vien");
-			y = scanner.nextByte();
-			CanBo canbo;
-			switch (y) {
-			case 1:
-				canbo = new CongNhan();
-				break;
-			case 2:
-				canbo = new KySu();
-				break;
-			case 3:
-				canbo = new NhanVien();
-				break;
-			default:
-				System.out.println("Ban da nhap sai. Moi ban nhap lai!");
-				break;
-			}
-			System.out.println("\nChuc mung! Ban da tao thanh cong nguoi thu " + (i + 1));
-		}
 	}
-
-//		b) Tìm kiếm theo họ tên
-	public static void question2b() {
-
-		
-		CanBo canBo = new CanBo();
-		System.out.println(canBo.equals("my nguyen"));
-	}	
-//	c) Hiện thị thông tin về danh sách các cán bộ
-	public static void question2c() {
-		CanBo canBo = new CanBo();
-		System.out.println(canBo);
-	} 
 
 //	Question 3 (Optional): constructor inheritance
 //	Tạo class abstract Person gồm các property name và tạo constructor có 1 parameter name
@@ -111,4 +77,29 @@ public class Excercise5_Inheritance {
 		System.out.println(highschool.desiredUniversity);
 	}
 
+//	Question 4 (Optional):
+//		Một thư viện cần quản lý các tài liệu bao gồm Sách, Tạp chí, Báo. Mỗi
+//		tài liệu gồm có các thuộc tính sau: Mã tài liệu(Mã tài liệu là duy nhất),
+//		Tên nhà xuất bản, số bản phát hành.
+//		Các loại sách cần quản lý thêm các thuộc tính: tên tác giả, số trang.
+//		Các tạp chí cần quản lý thêm: Số phát hành, tháng phát hành.
+//		Các báo cần quản lý thêm: Ngày phát hành.
+//		Xây dựng chương trình để quản lý tài liệu (QLTV) cho thư viện một
+//		cách hiệu quả.
+//		Xây dựng lớp QuanLySach có các chức năng sau
+//		a) Thêm mới tài liêu: Sách, tạp chí, báo.
+//		b) Xoá tài liệu theo mã tài liệu.
+//		c) Hiện thị thông tin về tài liệu.
+//		d) Tìm kiếm tài liệu theo loại: Sách, tạp chí, báo.
+//		e) Thoát khỏi chương trình.
+
+	public static void question4() {
+
+		QLS qls = new QLS();
+		qls.themMoiSach();
+		qls.print();
+		qls.xoaTailieu();
+		qls.find();
+
+	}
 }

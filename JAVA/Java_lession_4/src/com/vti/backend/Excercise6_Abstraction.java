@@ -1,9 +1,9 @@
 package com.vti.backend;
 
+import com.vti.entity.PHONE;
+
 public class Excercise6_Abstraction {
-public static void main(String[] args) {
-	question1();
-}
+
 //Question 1: abstract class & abstract method
 //Tạo 1 class Phone để lưu thông tin liên lạc, trong Phone có chứa 1
 //property có kiểu dữ liệu là Array contacts, trong từng contact có lưu thông tin number, name
@@ -14,7 +14,12 @@ public static void main(String[] args) {
 //d. void searchContact(String name)
 //b) Tạo class VietnamesePhone kế thừa Phone và triển khai các method abstract
 //Viết chương trình demo 
-public static void question1() {
-	
-}
+	public static void question1() {
+		PHONE phone = new PHONE();
+		phone.insertContact();
+		phone.print();
+		phone.removeContact();
+		phone.updateContact();
+		phone.searchContact();
+	}
 }

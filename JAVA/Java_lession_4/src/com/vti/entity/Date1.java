@@ -1,5 +1,6 @@
 package com.vti.entity;
 
+
 public class Date1 {
 	private int day;
 	private int month;
@@ -49,5 +50,6 @@ public class Date1 {
 
 		return result;
 	}
+	
 
 }

@@ -8,12 +8,6 @@ import com.vti.entity.Group;
 import com.vti.entity.Student_Ex;
 
 public class Excercise1_Constructor {
-	public static void main(String[] args) {
-		//question1();
-	//	question2();
-	question3();
-
-	}
 
 //		Question 1:
 //			Tạo constructor cho department:
@@ -22,7 +16,7 @@ public class Excercise1_Constructor {
 //			Department = 0
 //			Khởi tạo 1 Object với mỗi constructor ở trên
 
-	public static void question1() {
+	public void question1() {
 
 		Department department = new Department();
 
@@ -50,7 +44,7 @@ public class Excercise1_Constructor {
 //			Position của User, createDate
 //			Khởi tạo 1 Object với mỗi constructor ở trên
 
-	public static void question2() {
+	public void question2() {
 // Cau a
 		Account account = new Account();
 // Cau b
@@ -82,7 +76,7 @@ public class Excercise1_Constructor {
 //		Với mỗi username thì sẽ khởi tạo 1 Account (chỉ có thông tin
 //		username, các thông tin còn lại = null).
 //		Khởi tạo 1 Object với mỗi constructor ở trên
-	public static void question3() {
+	public void question3() {
 		// cau a
 		Group group = new Group();
 		// cau b

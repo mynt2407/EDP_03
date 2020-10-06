@@ -11,6 +11,7 @@ public class KySu extends CanBo {
 		super(name, age, sex);
 		this.trainingIndustry = trainingIndustry;
 	}
+	
 	// cach 2: Scanner
 
 	public KySu() {

@@ -1,7 +1,6 @@
 package com.vti.frontend;
 
 import com.vti.backend.Excercise1_Constructor;
-import com.vti.backend.Excercise2_Package;
 
 public class Program1 {
 	public static void main(String[] args) {

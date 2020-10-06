@@ -42,6 +42,9 @@ public abstract class CanBo {
 	public String getSex() {
 		return sex;
 	}
+	
+	
+	
 	// Cau a bai 2_ex5
 
 //	public void set_input() {
