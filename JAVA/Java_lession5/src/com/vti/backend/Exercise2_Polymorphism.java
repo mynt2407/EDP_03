@@ -1,12 +1,14 @@
 package com.vti.backend;
 
 import java.util.Random;
-
+import java.util.Scanner;
+import com.vti.entity.QLN;
 import com.vti.entity.Student_po;
 
-public class Polymorphism {
+public class Exercise2_Polymorphism {
 	public static void main(String[] args) {
-		question1();
+	//	question1();
+		question2();
 	}
 
 //Question 1: Interface Management
@@ -54,14 +56,14 @@ public class Polymorphism {
 				student.hocBai();
 			}
 		}
-		//d) Gọi nhóm 2 đi dọn vệ sinh
+		// d) Gọi nhóm 2 đi dọn vệ sinh
 		for (Student_po student : student2) {
-		if (student.getGroup() == 2) {
-			student.donVeSinh();
-		}	
+			if (student.getGroup() == 2) {
+				student.donVeSinh();
+			}
 		}
 	}
-	
+
 //	Question 2 (Optional): Abstract Management
 //	Tạo 1 class Person chứa các property sau: tên, giới tính, ngày sinh, địa
 //	chỉ với đầy đủ getter setter, constructor không tham số, constructor đầy đủ tham số
@@ -73,5 +75,29 @@ public class Polymorphism {
 //	b) Override phương thức showInfo(), hiển thị tất cả thông tin Student
 //	c) Viết phương thức xét xem Student có được học bổng không?
 //	Điểm trung bình từ 8.0 trở lên là được học bổng
-	
+	public static void question2() {
+
+		QLN qln = new QLN();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println(" + 1: Nhập thông tin vào:\n + 2: Hiển thị thông tin:\n");
+
+		while (true) {
+			System.out.print("Mời bạn chọn chức năng muốn sử dụng:");
+			int choose = scanner.nextInt();
+			switch (choose) {
+			case 1:
+				qln.inputInfo();
+				break;
+			case 2:
+				qln.showInfo();
+				break;
+			case 3:
+				System.out.println("Kết thúc chương trình!");
+				return;
+			default:
+				System.out.println("Bạn đã nhập sai! Mời bạn nhập lại!");
+				break;
+			}
+		}
+	}
 }

@@ -14,9 +14,9 @@ public class Excercise5_Inheritance {
 	public static void main(String[] args) {
 
 //		question1();
-		question2();
+//		question2();
 //		question3();
-//		question4();
+		question4();
 
 	}
 
@@ -52,11 +52,36 @@ public class Excercise5_Inheritance {
 //	e) Thoát khỏi chương trình.
 
 	public static void question2() {
+		Scanner scanner = new Scanner(System.in);
 		QLCB qlcb = new QLCB();
-		qlcb.themMoi();
-		qlcb.findName();
-		qlcb.delete();
-		qlcb.print();
+		System.out.print("Moi ban nhap vao chuc nang muon dung\n" + "1: Them moi can bo\n" + "2: Tim kiem theo ho ten\n"
+				+ "3: Hien thi thong tin\n" + "4: Delete can bo\n" + "5: Thoat khoi chuong trinh\n");
+		while (true) {
+			System.out.print("Moi ban chon chuc nang: ");
+			int choose = scanner.nextInt();
+			switch (choose) {
+			case 1:
+				qlcb.themMoi();
+				break;
+			case 2:
+				qlcb.findName();
+				break;
+			case 3:
+				qlcb.print();
+				break;
+			case 4:
+				qlcb.delete();
+				break;
+			case 5:
+				System.out.println("Ban da thoat khoi chuong trinh!");
+				return;
+
+			default:
+				System.out.println("Ban da nhap sai. Moi ban nhap lai!");
+				break;
+			}
+
+		}
 
 	}
 
@@ -96,10 +121,35 @@ public class Excercise5_Inheritance {
 	public static void question4() {
 
 		QLS qls = new QLS();
-		qls.themMoiSach();
-		qls.print();
-		qls.xoaTailieu();
-		qls.find();
+		Scanner scanner = new Scanner(System.in);
 
+		System.out.println(
+				" + 1: Thêm mới tài liệu\n + 2: Xóa tài liệu\n + 3: Hiển thị thông tin về tài liệu\n + 4: Tìm kiếm theo loại\n + 5: Thoát khỏi chương trình\n");
+
+		while (true) {
+			System.out.print("Mời bạn nhập chức năng muốn sử dụng: ");
+			int choose = scanner.nextInt();
+			switch (choose) {
+
+			case 1:
+				qls.themTL();
+				break;
+			case 2:
+				qls.xoaTL();
+				break;
+			case 3:
+				qls.printTL();
+				break;
+			case 4:
+				qls.findTL();
+				break;
+			case 5:
+				System.out.println("Bạn đã thoát chương trình!");
+				return;
+			default:
+				System.out.println("Bạn đã nhập sai. Mời nhập lại!");
+				break;
+			}
+		}
 	}
 }

@@ -9,10 +9,10 @@ public class Sach extends TaiLieu {
 	public Sach() {
 		super();
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Moi ban nhap vao ten tac gia: ");
+		System.out.print("Mời bạn nhập tên Tác Giả: ");
 		this.authorName = scanner.nextLine();
 
-		System.out.print("Moi ban nhap vao so trang: ");
+		System.out.print("Mời bạn nhập Số trang: ");
 		this.page = scanner.nextInt();
 
 	}
@@ -33,4 +33,11 @@ public class Sach extends TaiLieu {
 		this.page = page;
 	}
 
+	@Override
+	public String toString() {
+		String result = super.toString();
+		result += "Tên tác giả Sách là: " + authorName + "\n";
+		result += "Số trang Sách là: " + page + "\n";
+		return result;
+	}
 }

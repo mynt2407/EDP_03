@@ -16,22 +16,22 @@ public class Default_value {
 //		 FullName: "Full name 1"
 //		 CreateDate: now
 	public static void question1() {
-
-		Account[] accounts = new Account[5];
-		for (int i = 0; i < accounts.length; i++) {
-			accounts[i] = new Account();
-			accounts[i].fullName = "Full name " + (i + 1);
-			accounts[i].userName = "User name " + (i + 1);
-			accounts[i].email = "Email " + (i + 1);
-			accounts[i].createDate = new Date();
-
-			System.out.println(accounts[i].fullName);
-			System.out.println(accounts[i].userName);
-			System.out.println(accounts[i].email);
-			System.out.println(accounts[i].createDate);
-			System.out.println("\n");
-		}
-
+//
+//		Account[] accounts = new Account[5];
+//		for (int i = 0; i < accounts.length; i++) {
+//			accounts[i] = new Account();
+//			accounts[i].fullName = "Full name " + (i + 1);
+//			accounts[i].userName = "User name " + (i + 1);
+//			accounts[i].email = "Email " + (i + 1);
+//			accounts[i].createDate = new Date();
+//
+//			System.out.println(accounts[i].fullName);
+//			System.out.println(accounts[i].userName);
+//			System.out.println(accounts[i].email);
+//			System.out.println(accounts[i].createDate);
+//			System.out.println("\n");
+//		}
+//
 	}
-
-}
+//
+	}

@@ -1,6 +1,10 @@
 package com.vti.backend;
 
+import java.util.Scanner;
+
 import com.vti.entity.PHONE;
+
+import com.vti.entity.VNPHONE;
 
 public class Excercise6_Abstraction {
 
@@ -15,11 +19,39 @@ public class Excercise6_Abstraction {
 //b) Tạo class VietnamesePhone kế thừa Phone và triển khai các method abstract
 //Viết chương trình demo 
 	public static void question1() {
-		PHONE phone = new PHONE();
-		phone.insertContact();
-		phone.print();
-		phone.removeContact();
-		phone.updateContact();
-		phone.searchContact();
+
+		VNPHONE vnPhone = new VNPHONE();
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.println(" + 1: Thêm SĐT\n + 2: Xóa SĐT\n + 3: In SĐT\n + 4: Tìm kiếm SĐT\n + 5: update SĐT\n");
+
+		while (true) {
+			System.out.print("Mời bạn nhập vào chức năng muốn sử dụng: ");
+			int choose = scanner.nextInt();
+
+			switch (choose) {
+			case 1:
+				vnPhone.insertContact();
+				break;
+			case 2:
+				vnPhone.removeContact();
+				break;
+			case 3:
+				vnPhone.print();
+				break;
+			case 4:
+				vnPhone.searchContact();
+				break;
+			case 5:
+				vnPhone.updateContact();
+				break;
+			case 6:
+				System.out.println("Chương trình kết thúc!");
+				return;
+			default:
+				System.out.println("Bạn đã nhập sai. Mời bạn nhập lại!");
+				break;
+			}
+		}
 	}
 }

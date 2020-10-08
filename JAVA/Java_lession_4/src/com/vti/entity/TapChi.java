@@ -3,34 +3,43 @@ package com.vti.entity;
 import java.util.Scanner;
 
 public class TapChi extends TaiLieu {
-private int soPhatHanh;
-private byte thangPHatHanh;
+	private int soPhatHanh;
+	private byte thangPHatHanh;
 
-public TapChi() {
-	super();
-	Scanner scanner = new Scanner(System.in);
-	
-	System.out.print("Moi ban nhap So Phat Hanh: ");
-	this.soPhatHanh = scanner.nextInt();
-	
-	System.out.print("Moi ban nhap Thang Phat Hanh: ");
-	this.thangPHatHanh = scanner.nextByte();
-}
+	public TapChi() {
+		super();
+		Scanner scanner = new Scanner(System.in);
 
-public int getSoPhatHanh() {
-	return soPhatHanh;
-}
+		System.out.print("Mời bạn nhập Số Phát hành: ");
+		this.soPhatHanh = scanner.nextInt();
 
-public void setSoPhatHanh(int soPhatHanh) {
-	this.soPhatHanh = soPhatHanh;
-}
+		System.out.print("Mời bạn nhập Tháng Phát hành: ");
+		this.thangPHatHanh = scanner.nextByte();
+	}
 
-public byte getThangPHatHanh() {
-	return thangPHatHanh;
-}
+	public int getSoPhatHanh() {
+		return soPhatHanh;
+	}
 
-public void setThangPHatHanh(byte thangPHatHanh) {
-	this.thangPHatHanh = thangPHatHanh;
-}
+	public void setSoPhatHanh(int soPhatHanh) {
+		this.soPhatHanh = soPhatHanh;
+	}
+
+	public byte getThangPHatHanh() {
+		return thangPHatHanh;
+	}
+
+	public void setThangPHatHanh(byte thangPHatHanh) {
+		this.thangPHatHanh = thangPHatHanh;
+	}
+
+	@Override
+	public String toString() {
+		String result = super.toString();
+		result += "Số phát hành Tạp Chí: " + soPhatHanh + "\n";
+		result += "Tháng phát hành Tạp Chí " + thangPHatHanh + "\n";
+		return result;
+
+	}
 
 }

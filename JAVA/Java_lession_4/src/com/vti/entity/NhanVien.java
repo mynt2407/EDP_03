@@ -21,5 +21,11 @@ public class NhanVien extends CanBo {
 		String work = scanner.nextLine();
 
 	}
+	@Override
+	public String toString() {
+		String result = super.toString();
+		result += "Cong viec duoc phan cong la: " + work + "\n";
+		return result;
+	}
 
 }

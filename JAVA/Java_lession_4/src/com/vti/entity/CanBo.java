@@ -27,7 +27,7 @@ public abstract class CanBo {
 
 		System.out.println("Moi ban nhap vao gioi tinh: ");
 		this.sex = scanner.nextLine();
-		scanner.nextLine();
+		//scanner.nextLine();
 
 	}
 

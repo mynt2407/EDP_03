@@ -11,11 +11,11 @@ public class Contact {
 
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.print("Moi ban nhap vao sdt ");
+		System.out.print("Mời bạn nhập vào sđt: ");
 		number = scanner.nextInt();
 		scanner.nextLine();
 
-		System.out.print("Moi ban nhap vao ten: ");
+		System.out.print("Mời bạn nhập tên: ");
 		name = scanner.nextLine();
 	}
 
@@ -38,8 +38,8 @@ public class Contact {
 	@Override
 	public String toString() {
 		String result = "";
-		result += "Ten la: " + name + "\n";
-		result += "So dien thoai la: " + number + "\n";
+		result += "Tên là: " + name + "\n";
+		result += "SĐT là: " + number + "\n";
 		return result;
 	}
 
