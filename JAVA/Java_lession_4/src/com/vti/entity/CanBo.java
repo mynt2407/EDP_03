@@ -1,5 +1,6 @@
 package com.vti.entity;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public abstract class CanBo {
@@ -17,18 +18,31 @@ public abstract class CanBo {
 
 	public CanBo() {
 		Scanner scanner = new Scanner(System.in);
+		while (true) {
+			
+		
+		try {
+			System.out.println("Moi ban nhap vao ten: ");
+			this.name = scanner.nextLine();
 
-		System.out.println("Moi ban nhap vao ten: ");
-		this.name = scanner.nextLine();
+		} catch (InputMismatchException e) {
+			System.out.println("Bạn chỉ được nhập chữ! ");
+		}
+		
+		try {
+			System.out.println("Moi ban nhap vao tuoi: ");
+			this.age = scanner.nextByte();
+			scanner.nextLine();
+		} catch (InputMismatchException e) {
+			System.out.println("Bạn chỉ được nhập số!");
+		}
 
-		System.out.println("Moi ban nhap vao tuoi: ");
-		this.age = scanner.nextByte();
-		scanner.nextLine();
-
+		finally {
+			scanner.close();
+		}
 		System.out.println("Moi ban nhap vao gioi tinh: ");
 		this.sex = scanner.nextLine();
-		//scanner.nextLine();
-
+		}
 	}
 
 	public String getName() {
@@ -42,9 +56,7 @@ public abstract class CanBo {
 	public String getSex() {
 		return sex;
 	}
-	
-	
-	
+
 	// Cau a bai 2_ex5
 
 //	public void set_input() {

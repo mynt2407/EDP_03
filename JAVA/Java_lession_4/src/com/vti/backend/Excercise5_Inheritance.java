@@ -14,9 +14,9 @@ public class Excercise5_Inheritance {
 	public static void main(String[] args) {
 
 //		question1();
-//		question2();
+		question2();
 //		question3();
-		question4();
+//		question4();
 
 	}
 
