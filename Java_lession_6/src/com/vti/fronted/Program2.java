@@ -41,8 +41,8 @@ public class Program2 {
 		// Với while (true) khi chạy sai chương trình không chết mà yêu cầu nhập lại. Do
 		// vậy ko cần xử lý lỗi ở program
 
-	//	Exercise_2_Exception.idInput();
-	Exercise_2_Exception.inputFloat();
+		Exercise_2_Exception.idInput();
+	//Exercise_2_Exception.inputFloat();
 
 	}
 
