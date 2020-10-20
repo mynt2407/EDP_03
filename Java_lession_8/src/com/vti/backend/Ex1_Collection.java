@@ -6,13 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import com.vti.entity.ScannerUtils;
-import com.vti.entity.ScannerUtils_String;
 import com.vti.entity.Student;
 
-public class Excercise1_Collection {
-	static List<Student> students = new ArrayList<Student>();
-	static Scanner scanner = new Scanner(System.in);
+public class Ex1_Collection {
+	List<Student> students = new ArrayList<Student>();
+	Scanner scanner = new Scanner(System.in);
 
 //	Question 1: List
 //	Tạo 1 student có property id, name (trong đó có 3 student có name
@@ -31,13 +29,13 @@ public class Excercise1_Collection {
 //	k) Delete student có id = 5;
 //	l) Tạo 1 ArrayList tên là studentCopies và add tất cả students vào studentCopies
 
-	public static void getAmountOfStudent() {
+	public void getAmountOfStudent() {
 
 		students.add(new Student("My1"));
 		students.add(new Student("My2"));
 		students.add(new Student("My4"));
 		students.add(new Student("My5"));
-		students.add(new Student("My10"));
+		students.add(new Student("My1"));
 
 		// Cau a:
 		for (int i = 0; i < students.size(); i++) {
@@ -88,7 +86,8 @@ public class Excercise1_Collection {
 	public void findStudentById() {
 		System.out.print("Moi ban nhap id: ");
 
-		int inputId = ScannerUtils.inputPositiveInt("id can nhap phai la so nguyen duong! Moi nhap lai: ");
+		int inputId = com.vti.frontend.ScannerUtils
+				.inputPositiveInt("id can nhap phai la so nguyen duong! Moi nhap lai: ");
 
 		for (Student student : students) {
 			if (student.getId() == inputId) {
@@ -100,14 +99,14 @@ public class Excercise1_Collection {
 //	h) Tạo 1 method tìm kiếm student theo name
 	public void findByName() {
 		System.out.print("Moi ban nhap ten: ");
-		String name = ScannerUtils_String.inputString("Ban phai nhap vao chu! Moi nhap lai: ");
+		String name = com.vti.frontend.ScannerUtils.inputName();
 		boolean isName = false;
-		
+
 		for (int i = 0; i < students.size(); i++) {
 			if (students.get(i).getName().equals(name) && isName == true) {
-				System.out.println(students.get(i));	
+				System.out.println(students.get(i));
 				break;
-			} else if(!isName) {
+			} else if (!isName) {
 				System.out.println("Thong tin ban can tim khong co!");
 				break;
 			}
@@ -115,5 +114,40 @@ public class Excercise1_Collection {
 		}
 	}
 //	i) Tạo 1 method để in ra các student có trùng tên
-	
+
+	public void sameName() {
+
+		for (int j = 0; j < students.size(); j++) {
+			for (int i = j + 1; i < students.size(); i++) {
+				if (students.get(i).getName().equals(students.get(j).getName())) {
+					System.out.println("Nhung hoc sinh trung ten la: ");
+					System.out.println(students.get(i));
+					System.out.println(students.get(j));
+				}
+			}
+		}
+	}
+
+//	j) Xóa name của student có id = 2;
+	public void deleteName() {
+		for (int i = 0; i < students.size(); i++) {
+			if (students.get(i).getId() == 2) {
+				students.remove(i);
+			}
+		}
+		System.out.println(students);
+	}
+
+//l) Tạo 1 ArrayList tên là studentCopies và add tất cả students vào studentCopies
+	public void addArrayList() {
+		List<Student> studentCopies = new ArrayList<Student>();
+		studentCopies.add(new Student("Neo"));
+		studentCopies.add(new Student("Neo1"));
+		studentCopies.add(new Student("Neo2"));
+		studentCopies.add(new Student("Neo3"));
+
+		students.addAll(studentCopies);
+		System.out.println(students);
+	}
+
 }

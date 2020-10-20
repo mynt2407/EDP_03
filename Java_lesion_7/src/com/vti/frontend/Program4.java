@@ -8,6 +8,14 @@ public class Program4 {
 	public static void main(String[] args) throws IOException {
 
 		IO_Stream ios = new IO_Stream();
-		ios.readFile("C:\\Users\\MyNguyen\\Desktop\\test.txt");
+		
+		try {
+			ios.readFile("C:\\Users\\MyNguyen\\Desktop\\test.txt\\b");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
 	}
 }

@@ -5,8 +5,6 @@ import java.io.IOException;
 
 import com.vti.Utils.FileManager;
 
-
-
 public class Program3 {
 	public static void main(String[] args) throws Exception {
 		FileManager files = new FileManager();
@@ -31,11 +29,18 @@ public class Program3 {
 		// files.isFolder("C:\\Users\\MyNguyen\\Desktop\\my123.txt");
 
 		// getAllFile
-		try {
-			files.getAllFileName("C:\\Users\\MyNguyen\\Desktop");
-		} catch (Exception ioe) {
-			System.out.println(ioe.getMessage());
-		}
+//		try {
+//			files.getAllFileName("C:\\Users\\MyNguyen\\Desktop");
+//		} catch (Exception ioe) {
+//			System.out.println(ioe.getMessage());
+//		}
 
+		try {
+			files.copyFile("C:\\Users\\MyNguyen\\Desktop\\StudentInformation.txt", "C:\\Users\\MyNguyen\\Desktop", "Mynguyen.txt");
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		
 	}
 }

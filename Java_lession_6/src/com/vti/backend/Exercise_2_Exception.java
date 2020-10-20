@@ -1,12 +1,13 @@
 package com.vti.backend;
 
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.vti.entity.Department;
 import com.vti.entity.InvValidAgeLessZero;
 import com.vti.entity.ScannerUtils;
-import com.vti.entity.ScannerUtils_money;
+
 
 public class Exercise_2_Exception {
 
@@ -118,7 +119,7 @@ public class Exercise_2_Exception {
 	// Question 8:
 	public static void inputFloat() {
 		System.out.print("Mời bạn nhập số tiền: ");
-		float money = ScannerUtils_money.inputPositiveMoney("Số tiền phải là số thực. Mời nhập lại! ");
+		float money = ScannerUtils.inputPositiveMoney("Số tiền phải là số thực. Mời nhập lại! ");
 		System.out.println("So tien cua ban la: " + money);
 	}
 

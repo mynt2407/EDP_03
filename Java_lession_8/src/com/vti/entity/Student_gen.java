@@ -8,6 +8,11 @@ public class Student_gen<N extends Number> {
 		this.id = id;
 		this.name = name;
 
+		
+	}
+
+	public Student_gen(float f, String name2) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public N getId() {

@@ -10,13 +10,15 @@ public class FileManager {
 //	tại hay không.
 //	VD: path = "C:\Users\pc\Desktop\Test.txt"
 
-	public static void question1() {
-		File file = new File("C:\\Users\\MyNguyen\\Desktop\\my1234.txt");
+	public static boolean checkExist(String filePath) {
+		File file = new File(filePath);
 		if (file.exists()) {
 			System.out.println("File is exist!");
 		} else {
 			System.out.println("File is not exist!");
 		}
+		return true;
+
 	}
 //	Question 2: Create new file
 //	Tạo 1 method để có thể tạo được file.
@@ -29,9 +31,9 @@ public class FileManager {
 //		Vào tạo thêm method void createNewFile(String path, String
 //		fileName)
 
-	public static void createNewFile(String pathFile) throws Exception {
+	public static void createNewFile1(String pathFile) throws Exception {
 
-		File file = new File("C:\\Users\\MyNguyen\\Desktop\\my123.docx");
+		File file = new File(pathFile);
 		if (file.exists()) {
 			throw new Exception("Error! File Exist");
 
@@ -49,7 +51,7 @@ public class FileManager {
 
 	public static void deleteFile(String pathFile) throws Exception {
 
-		File file = new File("C:\\Users\\MyNguyen\\Desktop\\my123.doc");
+		File file = new File(pathFile);
 
 		if (file.exists()) {
 			file.delete();
@@ -64,7 +66,7 @@ public class FileManager {
 //	Gợi ý: Tạo method boolean isFolder(String path)
 
 	public static void isFolder(String path) {
-		File file = new File("C:\\Users\\MyNguyen\\Desktop\\my123.txt");
+		File file = new File(path);
 		System.out.println(file.isDirectory() ? "Path is Folder " : "Path is File");
 	}
 
@@ -84,6 +86,24 @@ public class FileManager {
 			throw new Exception("Error! Path is not folder");
 		}
 
+	}
+
+//	Question 7: Copy File
+//	Tạo 1 method để copy file.
+//	Chú ý:
+//	Nếu file không tồn tại thì sẽ throw ra Exception "Error! Source
+//	File Not Exist."
+//	Nếu file đích đã tồn tại thì sẽ throw ra Exception "Error!
+//	newPath has File same name."
+	
+	public static void copyFile(String sourceFile, String distinationPath, String newName) throws Exception {
+		File file = new File(sourceFile);
+		if (!file.exists()) {
+			throw new Exception("Error! Source File Not Exist");
+		} else if (file.exists()) {
+			throw new Exception("Error! newPath has File same name");
+		}
+		
 	}
 
 }
