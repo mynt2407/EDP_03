@@ -20,7 +20,7 @@ public class JdbcUltils {
 	}
 
 	public Connection connect() throws ClassNotFoundException, SQLException {
-		if (connection != null) {
+		if (connection != null && !connection.isClosed()) {
 			return connection;
 		}
 
@@ -37,4 +37,6 @@ public class JdbcUltils {
 		connection = DriverManager.getConnection(url, username, password);
 		return connection;
 	}
+
+
 }

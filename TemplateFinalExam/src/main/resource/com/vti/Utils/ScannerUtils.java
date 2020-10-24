@@ -1,24 +1,81 @@
-package com.vti.Ultils;
+package com.vti.Utils;
 
 import java.util.Scanner;
 
-// NHẬP VÀO S�? NGUYÊN DƯƠNG
 public class ScannerUtils {
 	private static Scanner scanner = new Scanner(System.in);
 
-	public static String inputPhoneNumber(String errorMessage) {
+	public static String inputEmail(String errorMessage) {
+		while (true) {
+			String email = ScannerUtils.inputString(errorMessage);
+			if (email == null || !email.contains("@gmail.com")) {
+				System.err.println(errorMessage);
+			} else {
+				return email;
+			}
+		}
+	}
 
+	public static int inputFunction(int a, int b, String errorMessage) {
+		while (true) {
+			int number = ScannerUtils.inputInt(errorMessage);
+			if (number >= a && number <= b) {
+				return number;
+			} else {
+				System.err.println(errorMessage);
+			}
+		}
+	}
+
+	public static String inputPassword(String errorMessage) {
+		while (true) {
+			String password = ScannerUtils.inputString(errorMessage);
+			if (password.length() < 6 || password.length() > 12) {
+				System.err.println(errorMessage);
+				continue;
+			}
+
+			boolean hasAtLeast1Character = false;
+
+			for (int i = 0; i < password.length(); i++) {
+				if (Character.isUpperCase(password.charAt(i)) == true) {
+					hasAtLeast1Character = true;
+					break;
+				}
+			}
+			if (hasAtLeast1Character == true) {
+				return password;
+			} else {
+				System.err.println(errorMessage);
+			}
+		}
+	}
+
+	public static String inputPhoneNumber(String errorMessage) {
 		while (true) {
 			String number = ScannerUtils.inputString(errorMessage);
-			if (number.length() > 11 || number.length() < 10) {
-				System.err.println("SĐT phải từ 10 - 11 số! Mời nhập lại!");
+			if (number.length() > 12 || number.length() < 9) {
+				System.err.println(errorMessage);
+				continue;
 			}
+
+			if (number.charAt(0) != '0') {
+				System.err.println(errorMessage);
+				continue;
+			}
+
+			boolean isNumber = true;
+
 			for (int i = 0; i < number.length(); i++) {
-				if (number.charAt(0) == 0 || Character.isDigit(i) == false) {
-					return number;
-				} else {
-					System.out.println(errorMessage);
+				if (Character.isDigit(number.charAt(i)) == false) {
+					isNumber = false;
+					break;
 				}
+			}
+			if (isNumber == true) {
+				return number;
+			} else {
+				System.out.println(errorMessage);
 			}
 
 		}
@@ -49,7 +106,6 @@ public class ScannerUtils {
 	}
 
 	// NHẬP VÀO TIỀN
-
 	public static float inputPositiveMoney(String erroMessage2) {
 		while (true) {
 			float money = ScannerUtils.inputMoney(erroMessage2);
@@ -74,8 +130,6 @@ public class ScannerUtils {
 		}
 	}
 
-	// NHẬP VÀO TÊN VÀ CHUẨN HÓA TÊN:
-
 	public static String inputString(String errorMessage) {
 		while (true) {
 
@@ -87,6 +141,7 @@ public class ScannerUtils {
 		}
 	}
 
+	// NHẬP VÀO TÊN VÀ CHUẨN HÓA TÊN:
 	public static String inputName(String errorMessage) {
 		while (true) {
 

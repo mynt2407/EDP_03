@@ -1,4 +1,4 @@
-package com.vti.Ultils;
+package com.vti.Utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,8 +14,8 @@ public class JdbcUltils {
 
 	public JdbcUltils() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		properties = new Properties();
-		properties.load(new FileInputStream("src/main/resource/database.properties"));
-		properties.load(new FileInputStream("src/main/resource/message.properties"));
+		properties.load(new FileInputStream("src/main/resource/com/vti/database.properties"));
+		properties.load(new FileInputStream("src/main/resource/com/vti/message.properties"));
 		connect();
 	}
 
@@ -33,8 +33,8 @@ public class JdbcUltils {
 		Class.forName(driver);
 
 		// Step 2: get a Database Connection
-
 		connection = DriverManager.getConnection(url, username, password);
 		return connection;
 	}
+
 }

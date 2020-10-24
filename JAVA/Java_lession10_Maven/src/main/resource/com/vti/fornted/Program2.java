@@ -1,6 +1,6 @@
 package com.vti.fornted;
 
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -21,10 +21,10 @@ public class Program2 {
 //		System.out.println(departments);
 //		System.out.println(department.getDepartmentById());
 
-		// Question 3:
+		// Question 3: read data – get department by id
 
 		Scanner scanner = new Scanner(System.in);
-//
+
 //		System.out.println("Moi ban nhap chuc nang muon su dung:\n" + "1: Tim department theo id\n"
 //				+ "2: Thoat khoi chuong trinh\n ");
 //
@@ -69,11 +69,11 @@ public class Program2 {
 //					break;
 //				}
 //			}
-//		} catch (DepartmentIsExists die) {
-//			throw new DepartmentIsExists("Ten phong ban ban tim khong co!");
+//		} catch (ExeceptionNameDepartment die) {
+//			throw new ExeceptionNameDepartment("Ten phong ban ban tim khong co!");
 //		}
 
-		// Question 5: tao department
+		// Question 5: create data – create department
 
 //		try {
 //
@@ -86,6 +86,7 @@ public class Program2 {
 //				case 1:
 //					System.out.print("Moi ban nhap ten phong ban : ");
 //					String input = ScannerUtils.inputString("Ban phai nhap vao ten! Moi nhap lai: ");
+//
 //					System.out.println(department.createDepartment(input));
 //					break;
 //				case 2:
@@ -96,12 +97,11 @@ public class Program2 {
 //					break;
 //				}
 //			}
-//		} catch (DepartmentIsExists die) {
-//			throw new DepartmentIsExists("Department name da ton tai!");
+//		} catch (ExeceptionNameDepartment die) {
+//			throw new ExeceptionNameDepartment("Department name da ton tai!");
 //		} catch (Exception e) {
 //			throw new Exception("Ban da nhap sai! Moi nhap lai!");
 //		}
-//		
 
 		// Question 6: update
 

@@ -19,13 +19,37 @@ import com.vti.entity.Department;
 import com.vti.entity.ExeceptionIdDepartment;
 import com.vti.entity.ExeceptionNameDepartment;
 
+/**
+ * This class is .
+ * 
+ * @Description: .
+ * @author: My Nguyen
+ * @create_date: Oct 20, 2020
+ * @version: 1.0
+ * @modifer: My Nguyen
+ * @modifer_date: Oct 20, 2020
+ */
 public class DepartmentDao {
 	JdbcUltils jdbcUltils;
 	Connection connection;
 
+	/**
+	 * Constructor for class DepartmentDao.
+	 * 
+	 * @Description: .
+	 * @author: My Nguyen
+	 * @create_date: Oct 20, 2020
+	 * @version: 1.0
+	 * @modifer: My Nguyen
+	 * @modifer_date: Oct 20, 2020
+	 * @throws FileNotFoundException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 * @throws SQLException
+	 */
 	public DepartmentDao() throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
 		jdbcUltils = new JdbcUltils();
-		connection = jdbcUltils.connect();
+
 	}
 
 //	Question 1: read data – get list departments
@@ -35,26 +59,47 @@ public class DepartmentDao {
 //	List<Department>, Nếu có lỗi sẽ throw Exception lên frontend để in ra
 //	Trên front-end sẽ gọi class DepartmentDao và demo method này
 
+	/**
+	 * This method is .
+	 * 
+	 * @Description: .
+	 * @author: My Nguyen
+	 * @create_date: Oct 21, 2020
+	 * @version: 1.0
+	 * @modifer: My Nguyen
+	 * @modifer_date: Oct 21, 2020
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public List<Department> getDepartment() throws ClassNotFoundException, SQLException {
 
 		List<Department> departments = new ArrayList<>();
 
-		// Step 3: Create a statment object
-		Statement statement = connection.createStatement();
+		try {
+			// get connect
+			connection = jdbcUltils.connect();
+			// Step 3: Create a statment object
+			Statement statement = connection.createStatement();
 
-		// Step 4: Execute query
-		String listDepartment = "SELECT * FROM testingsystem.department";
-		ResultSet resultSet = statement.executeQuery(listDepartment);
+			// Step 4: Execute query
+			String listDepartment = "SELECT * FROM testingsystem.department";
+			ResultSet resultSet = statement.executeQuery(listDepartment);
 
-		// Step 5: Handling result set
-		while (resultSet.next()) {
-			Department department = new Department();
-			department.setId(resultSet.getInt("DepartmentID"));
-			department.setName(resultSet.getString("DepartmentName"));
-			departments.add(department);
+			// Step 5: Handling result set
+			while (resultSet.next()) {
+				Department department = new Department();
+				department.setId(resultSet.getInt("DepartmentID"));
+				department.setName(resultSet.getString("DepartmentName"));
+				departments.add(department);
+
+			}
+			return departments;
+		} finally {
+			// Step 6: Close connection
+			connection.close();
 		}
 
-		return departments;
 	}
 
 //	Question 2: read data – get department by id
@@ -65,26 +110,44 @@ public class DepartmentDao {
 //	Nếu có lỗi sẽ throw Exception lên front-end để in ra
 //	Trên front-end sẽ gọi class DepartmentDao và demo method này
 
+	/**
+	 * This method is .
+	 * 
+	 * @Description: .
+	 * @author: My Nguyen
+	 * @create_date: Oct 20, 2020
+	 * @version: 1.0
+	 * @modifer: My Nguyen
+	 * @modifer_date: Oct 20, 2020
+	 * @return
+	 * @throws Exception
+	 */
 	public Department getDepartmentById() throws Exception {
+		try {
+			// step 2: get connection
+			connection = jdbcUltils.connect();
 
-		// Step 3: Create a statement object
-		Statement statement = connection.createStatement();
+			// Step 3: Create a statement object
+			Statement statement = connection.createStatement();
 
-		// Step 4: Execute query
-		String sql = "SELECT * \r\n" + "FROM testingsystem.department\r\n" + "WHERE DepartmentID = 5";
-		ResultSet resultSet = statement.executeQuery(sql);
+			// Step 4: Execute query
+			String sql = "SELECT * \r\n" + "FROM testingsystem.department\r\n" + "WHERE DepartmentID = 5";
+			ResultSet resultSet = statement.executeQuery(sql);
 
-		// Step 5: Handling result set
-//		System.out.println(resultSet.getInt("DepartmentID"));
-//		System.out.println(resultSet.getString("DepartmentName"));
-		if (resultSet.next()) {
+			// Step 5: Handling result set
 
-			Department department = new Department();
-			department.setId(resultSet.getInt("DepartmentID"));
-			department.setName(resultSet.getString("DepartmentName"));
-			return department;
-		} else {
-			throw new Exception("Can't find that!");
+			if (resultSet.next()) {
+
+				Department department = new Department();
+				department.setId(resultSet.getInt("DepartmentID"));
+				department.setName(resultSet.getString("DepartmentName"));
+				return department;
+			} else {
+				throw new Exception("Can't find that!");
+			}
+		} finally {
+			// Step 6: close connect
+			connection.close();
 		}
 	}
 //	Question 3: Tiếp tục Question 2 (read data – get department by id)
@@ -101,26 +164,32 @@ public class DepartmentDao {
 
 	public Department getDepartmentByIdbyScanner(int id) throws ClassNotFoundException, SQLException {
 
-		// Step 3: Create a statement object
-		String sql = "SELECT * \r\n" + "FROM testingsystem.department\r\n" + "WHERE DepartmentID = ?";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		try {
+			// Step 2: get connect
+			connection = jdbcUltils.connect();
 
-		// set parameter
-		preparedStatement.setInt(1, id);
+			// Step 3: Create a statement object
+			String sql = "SELECT * \r\n" + "FROM testingsystem.department\r\n" + "WHERE DepartmentID = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-		// Step 4: Execute SQL query
-		ResultSet resultSet = preparedStatement.executeQuery();
+			// set parameter
+			preparedStatement.setInt(1, id);
 
-		// Step 5: Handling result set
-		while (resultSet.next()) {
-			Department department = new Department();
-			department.setId(resultSet.getInt("DepartmentID"));
-			department.setName(resultSet.getString("DepartmentName"));
-			return department;
+			// Step 4: Execute SQL query
+			ResultSet resultSet = preparedStatement.executeQuery();
 
+			// Step 5: Handling result set
+			while (resultSet.next()) {
+				Department department = new Department();
+				department.setId(resultSet.getInt("DepartmentID"));
+				department.setName(resultSet.getString("DepartmentName"));
+				return department;
+
+			}
+			return null;
+		} finally {
+			connection.close();
 		}
-		return null;
-
 	}
 
 //	Question 4: check data exists – check department name exists
@@ -135,26 +204,34 @@ public class DepartmentDao {
 
 	public boolean isDepartmentNameExists(String name)
 			throws ExeceptionNameDepartment, ClassNotFoundException, SQLException {
-		// Step 3: Create a statement object
 
-		String sql = "SELECT * \r\n" + "FROM testingsystem.department \r\n" + "WHERE DepartmentName = ? ";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		try {
 
-		// set parameter
-		preparedStatement.setString(1, name);
+			// Step 2: get connect
+			connection = jdbcUltils.connect();
 
-		// Step 4: Execute Query
-		ResultSet resultSet = preparedStatement.executeQuery();
+			// Step 3: Create a statement object
 
-		// Step 5: Handling result set
+			String sql = "SELECT * \r\n" + "FROM testingsystem.department \r\n" + "WHERE DepartmentName = ? ";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-		if (resultSet.next()) {
+			// set parameter
+			preparedStatement.setString(1, name);
 
-			return true;
+			// Step 4: Execute Query
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			// Step 5: Handling result set
+
+			if (resultSet.next()) {
+
+				return true;
+			}
+
+			return false;
+		} finally {
+			connection.close();
 		}
-
-		return false;
-
 	}
 
 //	Question 5: create data – create department
@@ -170,29 +247,51 @@ public class DepartmentDao {
 //	Trên front-end sẽ gọi class DepartmentDao và demo method
 //	này (dùng scanner để nhập thông tin của department muốn create)
 
+
+	/**
+	 * This method is: tao moi phong ban
+	 * 
+	 * @Description: .
+	 * @author: My Nguyen
+	 * @create_date: Oct 21, 2020
+	 * @version: 1.0
+	 * @modifer: My Nguyen
+	 * @modifer_date: Oct 21, 2020
+	 * @param name
+	 * @return
+	 * @throws ExeceptionNameDepartment :bat loi trung ten
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 * @throws Exception
+	 */
 	public int createDepartment(String name)
 			throws ExeceptionNameDepartment, ClassNotFoundException, SQLException, Exception {
-		if (isDepartmentNameExists(name)) {
-			throw new ExeceptionNameDepartment("Department Name is Exists!");
-		} else {
-			// Step 2: get connect
-			connection = jdbcUltils.connect();
+		try {
 
-			// Step 3: Create a statement object
-			String sql = "INSERT INTO Department  ( DepartmentName ) \r\n " + " VALUES   ( ? ) ";
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			if (isDepartmentNameExists(name)) {
+				throw new ExeceptionNameDepartment("Department Name is Exists!");
+			} else {
+				// Step 2: get connect
+				connection = jdbcUltils.connect();
 
-			// set parameter
-			preparedStatement.setString(1, name);
+				// Step 3: Create a statement object
+				String sql = "INSERT INTO Department  ( DepartmentName ) " + " VALUES   ( ? ) ";
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-			// Step 4: Execute Query
+				// set parameter
+				preparedStatement.setString(1, name);
 
-			int effectedRecodAmount = preparedStatement.executeUpdate();
+				// Step 4: Execute Query
 
-			// Step 5: Handling result
-			System.out.println("Effect Amount" + effectedRecodAmount);
+				int effectedRecodAmount = preparedStatement.executeUpdate();
 
-			return effectedRecodAmount;
+				// Step 5: Handling result
+				System.out.println("Effect Amount" + effectedRecodAmount);
+
+				return effectedRecodAmount;
+			}
+		} finally {
+			connection.close();
 		}
 	}
 
@@ -213,55 +312,68 @@ public class DepartmentDao {
 //	thì throw ra Exception "Department Name is Exists!"
 
 	public boolean isDepartmentIdExists(int id) throws ExeceptionNameDepartment, ClassNotFoundException, SQLException {
+		try {
 
-		// Step 3: Create a statement object
+			// step 2: get connect
+			connection = jdbcUltils.connect();
 
-		String sql = "SELECT * \r\n" + "FROM testingsystem.department \r\n" + "WHERE DepartmentID = ? ";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			// Step 3: Create a statement object
 
-		// set parameter
-		preparedStatement.setInt(1, id);
+			String sql = "SELECT * \r\n" + "FROM testingsystem.department \r\n" + "WHERE DepartmentID = ? ";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-		// Step 4: Execute Query
-		ResultSet resultSet = preparedStatement.executeQuery();
+			// set parameter
+			preparedStatement.setInt(1, id);
 
-		// Step 5: Handling result set
+			// Step 4: Execute Query
+			ResultSet resultSet = preparedStatement.executeQuery();
 
-		if (resultSet.next()) {
+			// Step 5: Handling result set
 
-			return true;
+			if (resultSet.next()) {
+
+				return true;
+			}
+
+			return false;
+		} finally {
+			connection.close();
 		}
-
-		return false;
-
 	}
 
 	public int updateDepartmentName(int id, String newName) throws Exception {
-		if (!isDepartmentIdExists(id)) {
-			throw new ExeceptionIdDepartment("Cannot find department which has id = " + id);
+		try {
+
+			if (!isDepartmentIdExists(id)) {
+				throw new ExeceptionIdDepartment("Cannot find department which has id = " + id);
+			}
+
+			if (isDepartmentNameExists(newName)) {
+				throw new ExeceptionNameDepartment("Department Name is Exists!");
+			}
+
+			// step 2: get connect
+			connection = jdbcUltils.connect();
+
+			// Step 3: Create a statement object
+			String sql = "UPDATE department\r\n" + "SET DepartmentName = ? \r\n" + "WHERE DepartmentID = ? ";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+			// set parameter
+			preparedStatement.setString(1, newName);
+			preparedStatement.setInt(2, id);
+
+			// Step 4: Execute Query
+
+			int effectedRecodAmount = preparedStatement.executeUpdate();
+
+			// Step 5: Handling result
+			System.out.println("So hang duoc update thanh cong: " + effectedRecodAmount);
+
+			return effectedRecodAmount;
+		} finally {
+			connection.close();
 		}
-
-		if (isDepartmentNameExists(newName)) {
-			throw new ExeceptionNameDepartment("Department Name is Exists!");
-		}
-
-		// Step 3: Create a statement object
-		String sql = "UPDATE department\r\n" + "SET DepartmentName = ? \r\n" + "WHERE DepartmentID = ? ";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-		// set parameter
-		preparedStatement.setString(1, newName);
-		preparedStatement.setInt(2, id);
-
-		// Step 4: Execute Query
-
-		int effectedRecodAmount = preparedStatement.executeUpdate();
-
-		// Step 5: Handling result
-		System.out.println("So hang duoc update thanh cong: " + effectedRecodAmount);
-
-		return effectedRecodAmount;
-
 	}
 
 //	Question 7:
@@ -281,25 +393,33 @@ public class DepartmentDao {
 
 	public int deleteDepartment(int id)
 			throws ClassNotFoundException, SQLException, ExeceptionIdDepartment, ExeceptionNameDepartment {
-		if (!isDepartmentIdExists(id)) {
-			throw new ExeceptionIdDepartment("Cannot find department which has id = " + id);
+		try {
+
+			if (!isDepartmentIdExists(id)) {
+				throw new ExeceptionIdDepartment("Cannot find department which has id = " + id);
+			}
+
+			// Step 2: get connect
+			connection = jdbcUltils.connect();
+
+			// Step 3: Create a statement object
+			String sql = "DELETE\r\n" + "FROM department\r\n" + "WHERE DepartmentID = ? ";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+			// set parameter
+			preparedStatement.setInt(1, id);
+
+			// Step 4: Execute Query
+
+			int effectedRecodAmount = preparedStatement.executeUpdate();
+
+			// Step 5: Handling result
+			System.out.println("So hang da duoc delete: " + effectedRecodAmount);
+
+			return effectedRecodAmount;
+
+		} finally {
+			connection.close();
 		}
-		// Step 3: Create a statement object
-		String sql = "DELETE\r\n" + "FROM department\r\n" + "WHERE DepartmentID = ? ";
-		PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-		// set parameter
-		preparedStatement.setInt(1, id);
-
-		// Step 4: Execute Query
-
-		int effectedRecodAmount = preparedStatement.executeUpdate();
-
-		// Step 5: Handling result
-		System.out.println("So hang da duoc delete: " + effectedRecodAmount);
-
-		return effectedRecodAmount;
-
 	}
-
 }

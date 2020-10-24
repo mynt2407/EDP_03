@@ -103,13 +103,13 @@ public class InClass_lession2 {
 		case 2:
 			System.out.println("Co 2 group");
 			break;
-			
+
 		default:
 			System.out.println("Co" + account1.groups.length + "group");
 			break;
 		}
 		System.out.println("\n");
-		
+
 //		Question 10:
 //			In ra thông tin các account bao gồm: Email, FullName và tên phòng ban của
 //			họ theo định dạng như sau:
@@ -121,15 +121,12 @@ public class InClass_lession2 {
 //			Email: NguyenVanB@gmail.com
 //			Full name: Nguyễn Văn B
 //			Phòng ban: Marketting
-		
+
 		for (int i = 0; i < groupOfAccount1.length; i = i + 1) {
 			System.out.println("Thong tin cua group thu" + (i + 1) + "la");
 			System.out.println(groupOfAccount1[i].groups.createDate);
 			System.out.println(groupOfAccount1[i].groups.id);
 		}
 
-
-			
-		}
 	}
-
+}

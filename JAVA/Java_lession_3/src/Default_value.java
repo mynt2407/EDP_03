@@ -5,7 +5,6 @@ public class Default_value {
 	public static void main(String[] args) {
 		question1();
 
-
 	}
 
 //	Question 1:
@@ -34,4 +33,4 @@ public class Default_value {
 //
 	}
 //
-	}
+}
