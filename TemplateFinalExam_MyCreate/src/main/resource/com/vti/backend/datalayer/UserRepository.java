@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vti.Utils.JdbcUltils;
+import com.vti.entity.Role;
 import com.vti.entity.User;
 
 public class UserRepository implements IUserRepository {
@@ -43,8 +44,9 @@ public class UserRepository implements IUserRepository {
 				String fullName = resultSet.getString("FullName");
 				String email = resultSet.getString("Email");
 				String password = resultSet.getString("Password");
-
-				User user = new User(userId, fullName, email, password);
+				Role role = Role.valueOf(resultSet.getString("Role"));
+				
+				User user = new User(userId, fullName, email, password, role);
 				users.add(user);
 
 			}
@@ -78,8 +80,9 @@ public class UserRepository implements IUserRepository {
 				String fullName = resultSet.getString("FullName");
 				String email = resultSet.getString("Email");
 				String password = resultSet.getString("Password");
+				Role role = Role.valueOf(resultSet.getString("Role"));
 
-				User user = new User(userId, fullName, email, password);
+				User user = new User(userId, fullName, email, password, role);
 
 				return user;
 			} else {
@@ -176,8 +179,9 @@ public class UserRepository implements IUserRepository {
 			if (resultSet.next()) {
 				int userId = resultSet.getInt("UserID");
 				String fullName = resultSet.getString("FullName");
+				Role role = Role.valueOf(resultSet.getString("Role"));
 
-				User user = new User(userId, fullName, email, password);
+				User user = new User(userId, fullName, email, password, role);
 				return user;
 			} else {
 				throw new Exception("\nTai khoan khong ton tai!");

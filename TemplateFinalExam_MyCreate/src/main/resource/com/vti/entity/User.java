@@ -6,12 +6,23 @@ public class User {
 	private String FullName;
 	private String Email;
 	private String Password;
+	private Role role;
 
+	
 	public User(int id, String fullName, String email, String password) {
+		
+		this.id = id;
+		FullName = fullName;
+		Email = email;
+		Password = password;
+	}
+
+	public User(int id, String fullName, String email, String password, Role role) {
 		this.id = id;
 		this.FullName = fullName;
 		this.Email = email;
 		this.Password = password;
+		this.role = role;
 	}
 
 	public int getId() {
@@ -48,7 +59,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id = " + id + ", FullName = " + FullName + ", Email = " + Email + ", Password = " + Password
+		return "User [id = " + id + ", FullName = " + FullName + ", Email = " + Email + ", Role = " + role
 				+ "]";
 	}
 

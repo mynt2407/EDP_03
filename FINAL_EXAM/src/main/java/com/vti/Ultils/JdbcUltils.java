@@ -14,8 +14,8 @@ public class JdbcUltils {
 
 	public JdbcUltils() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		properties = new Properties();
-		properties.load(new FileInputStream("src/main/resource/com/vti/database.properties"));
-		properties.load(new FileInputStream("src/main/resource/com/vti/message.properties"));
+		properties.load(new FileInputStream("src\\main\\resource\\database.properties"));
+		properties.load(new FileInputStream("src\\main\\resource\\message.properties"));
 		connect();
 	}
 

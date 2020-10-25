@@ -5,7 +5,7 @@ public class Employee extends User {
 	private String ProSkill;
 
 	public Employee(int id, String fullName, String email, String password, String ProSkill) {
-		super(id, fullName, email, password);
+		super(id, fullName, email, password, Role.USER);
 		this.ProSkill = ProSkill;
 
 	}

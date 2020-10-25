@@ -5,7 +5,7 @@ public class Admin extends User {
 	private int ExpInYear;
 
 	public Admin(int id, String fullName, String email, String password, int ExpInYear) {
-		super(id, fullName, email, password);
+		super(id, fullName, email, password, Role.ADMIN);
 		this.ExpInYear = ExpInYear;
 	}
 
