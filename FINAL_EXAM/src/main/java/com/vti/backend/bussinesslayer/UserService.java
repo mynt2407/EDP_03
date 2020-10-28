@@ -14,34 +14,55 @@ import com.vti.entity.User;
 public class UserService implements IUserService {
 	private IUserRepository userRepository;
 
+	/**
+	 * Constructor for class UserService.
+	 * 
+	 * @Description: Khoi tao contructor
+	 * @author: My Nguyen
+	 * @create_date: Oct 27, 2020
+	 * @version: 1.0
+	 * @modifer: My Nguyen
+	 * @modifer_date: Oct 27, 2020
+	 * @throws FileNotFoundException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 * @throws SQLException
+	 */
 	public UserService() throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
 		userRepository = new UserRepository();
 	}
 
+	
+	/* 
+	* @see com.vti.backend.bussinesslayer.IUserService#getUserByProjectId(int)
+	*/
 	@Override
-	public Project getIdOfUser(int id) throws Exception {
-		return userRepository.getIdOfUser(id);
+	public List<User> getUserByProjectId(int id) throws Exception {
+		return userRepository.getUserByProjectId(id);
 	}
 
-	@Override
-	public User getManagerById(int id) throws Exception {
-		return userRepository.getManagerById(id);
-	}
-
-	@Override
-	public User getEmployeeById(int id) throws Exception {
-		return userRepository.getEmployeeById(id);
-	}
-
-	@Override
-	public List<Manager> getListManger() {
-		// TODO Auto-generated method stub
-		return userRepository.getListManger();
-	}
-
+	/* 
+	* @see com.vti.backend.bussinesslayer.IUserService#login(java.lang.String, java.lang.String)
+	*/
 	@Override
 	public User login(String email, String password) throws Exception {
 		return userRepository.login(email, password);
+	}
+
+	/* 
+	* @see com.vti.backend.bussinesslayer.IUserService#getManagerInProject()
+	*/
+	@Override
+	public List<User> getManagerInProject() throws Exception, ClassNotFoundException {
+		return userRepository.getManagerInProject();
+	}
+
+	/* 
+	* @see com.vti.backend.bussinesslayer.IUserService#isUserIdExits(int)
+	*/
+	@Override
+	public boolean isUserIdExits(int id) throws SQLException, ClassNotFoundException {
+		return userRepository.isUserIdExits(id);
 	}
 
 }

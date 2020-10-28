@@ -9,11 +9,21 @@ public class User {
 	private Role role;
 	private Project project;
 
-	public User(int id, String fullName, String email, String password) {
+	public User() {
+	}
+
+	public User(int id, String fullName, String email) {
 		this.id = id;
 		this.fullName = fullName;
-		Email = email;
-		this.password = password;
+		this.Email = email;
+		this.role = role;
+	}
+	
+	public User(int id, String fullName, String email, Role role) {
+		this.id = id;
+		this.fullName = fullName;
+		this.Email = email;
+		this.role = role;
 	}
 
 	public User(int id, String fullName, String email, String password, Role role) {
@@ -85,8 +95,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", fullName=" + fullName + ", Email=" + Email + ", role=" + role + ", project="
-				+ project + "]";
+		return "User [id = " + id + ", fullName = " + fullName + ", Email = " + Email + ", role = " + role + "]";
 	}
 
 }

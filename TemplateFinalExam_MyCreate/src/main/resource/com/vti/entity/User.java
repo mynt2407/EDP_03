@@ -12,9 +12,9 @@ public class User {
 	public User(int id, String fullName, String email, String password) {
 		
 		this.id = id;
-		FullName = fullName;
-		Email = email;
-		Password = password;
+		this.FullName = fullName;
+		this.Email = email;
+		this.Password = password;
 	}
 
 	public User(int id, String fullName, String email, String password, Role role) {

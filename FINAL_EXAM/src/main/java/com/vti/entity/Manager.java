@@ -3,8 +3,8 @@ package com.vti.entity;
 public class Manager extends User {
 	private int ExpInYear;
 
-	public Manager(int id, String fullName, String email, String password, int ExpInYear) {
-		super(id, fullName, email, password, Role.MANAGER);
+	public Manager(int id, String fullName, String email,  int ExpInYear) {
+		super(id, fullName, email, Role.EMPLOYEE);
 		this.ExpInYear = ExpInYear;
 	}
 
@@ -18,10 +18,8 @@ public class Manager extends User {
 
 	@Override
 	public String toString() {
-		return "Manager [ExpInYear=" + ExpInYear + ", getId()=" + getId() + ", getFullName()=" + getFullName()
-				+ ", getEmail()=" + getEmail() + ", getPassword()=" + getPassword() + ", getRole()=" + getRole()
-				+ ", getProject()=" + getProject() + ", toString()=" + super.toString() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + "]";
+		return "Manager [ExpInYear=" + ExpInYear + ",  ID=" + getId() + ", FullName=" + getFullName() + ", Email ="
+				+ getEmail() + ", Chức vụ=" + getRole() + ",  Project =" + getProject() + "]";
 	}
 
 }

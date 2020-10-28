@@ -5,8 +5,8 @@ public class Employee extends User {
 	private String ProSkill;
 
 	
-	public Employee(int id, String fullName, String email, String password, String ProSkill) {
-		super(id, fullName, email, password, Role.EMPLOYEE);
+	public Employee(int id, String fullName, String email, int projectId, String ProSkill) {
+		super(id, fullName, email, Role.EMPLOYEE);
 		
 		this.projectId = projectId;
 		this.ProSkill = ProSkill;
@@ -30,10 +30,15 @@ public class Employee extends User {
 
 	@Override
 	public String toString() {
-		return "Employee [projectId=" + projectId + ", ProSkill=" + ProSkill + ", getId()=" + getId()
-				+ ", getFullName()=" + getFullName() + ", getEmail()=" + getEmail() + ", getPassword()=" + getPassword()
-				+ ", getRole()=" + getRole() + ", getProject()=" + getProject() + ", toString()=" + super.toString()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+		return "Employee [projectId=" + projectId + ", ProSkill=" + ProSkill + ", ID =" + getId()
+				+ ", FullName=" + getFullName() + ", Email =" + getEmail() 
+				+ ", Vai trò=" + getRole() + ", Project =" + getProject()
+				 +"]";
 	}
+
+
+
+	
+
 
 }
