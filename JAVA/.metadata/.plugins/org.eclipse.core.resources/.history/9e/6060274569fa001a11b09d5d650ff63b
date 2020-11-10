@@ -1,5 +1,0 @@
-
-public enum Position {
-byte id;
-enum PositionName {'DEV', 'TEST', SCRUM MASTER, PM};
-}
