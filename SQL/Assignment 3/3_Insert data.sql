@@ -18,17 +18,17 @@ VALUES
 						(3,				'Test'				),
 						(4,				'Vice Director'		),
 						(5,				'Guard'				),
-                        (6,				'Developer'		    );
+                        (6,				'Accountant'		    );
                         
 INSERT INTO  `Account` (AccountID, 		Email, 						User_name, 				Full_name, 			DepartmentID,	PositionID,	CreateDate)
 VALUES
 						(1,			'duynn03@gmail.com',			'duynn03',				N'Nguyễn Ngọc Duy',		1,				4,			NOW()),
 						(2,			'tranphudattp1997@gmail.com',	'dat.tranphu',			N'Trần Phú Đạt',		3,				5,			NULL),
-						(3,			'alka.asura@gmail.com',			'du.lengoc',			N'Lê Ngọc Du',			1,				2,			NOW()),
+						(3,			'alka.asura@gmail.com',			'du.lengoc',			N'Lê Ngọc Du',			2,				2,			NOW()),
 						(4,			'ntd19795@gmail.com',			'duc.nguyenthe',		N'Nguyễn Thế Đức',		5,				6,			NOW()),
 						(5,			'Vuhoanghiepnb@gmail.com',		'hiep.vuhoang',			N'Vũ Hoàng Hiệp',		4,				3,			NULL),
 						(6,			'mynt2407@gmail.com',			'my.nguyenthi',			N'Nguyễn Thị Mỵ',		2,				1,			NULL),
-						(7,			'nhung.tongthi@vti.com.vn',		'nhung.tongthi',		N'Tống Thị Nhung',		1,				2,			NOW());
+						(7,			'nhung.tongthi@vti.com.vn',		'nhung.tongthi',		N'Tống Thị Nhung',		1,				NULL,			NOW());
                         
 INSERT INTO `Group` (GroupID, 	GroupName, 				CreatorID, CreateDate)
 VALUES 
