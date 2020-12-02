@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.vti.BeanValidation.EmailExist;
 import com.vti.BeanValidation.EmailNotExist;
-import com.vti.BeanValidation.IDNotExist;
+import com.vti.BeanValidation.IDExist;
 import com.vti.BeanValidation.UserNameNotExist;
 import com.vti.entity.Account;
 
@@ -24,7 +24,7 @@ public class AccountDto {
 	
 	@Id
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@IDNotExist
+	@IDExist
 	private short id;
 
 	@NotBlank(message = "{accountDto.email.NotBlank}")

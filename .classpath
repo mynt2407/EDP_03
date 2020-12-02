@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Ad_Lession_1/src"/>
+	<classpathentry kind="src" path="Ad_Lession_3/src"/>
+	<classpathentry kind="src" path="Ad_Lession_6/src/main/java"/>
+	<classpathentry kind="src" path="Ad_Lession_6/src/test/java"/>
+	<classpathentry kind="src" path="Ad_LESSION4_HIBERNATE/src/main/java"/>
+	<classpathentry kind="src" path="Ad_LESSION4_HIBERNATE/src/test/java"/>
+	<classpathentry kind="src" path="DemoUtilsCRUD/src/main/java"/>
+	<classpathentry kind="src" path="DemoUtilsCRUD/src/test/java"/>
+	<classpathentry kind="src" path="FINAL_EXAM/src/main/java"/>
+	<classpathentry kind="src" path="FINAL_EXAM/src/test/java"/>
+	<classpathentry kind="src" path="JAVA_CORE/Extra_2/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Extra_3/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java Course/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lesion_7/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lesion_9/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession_1/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession_10/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_Lession_11_Maven/src/main/java"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_Lession_11_Maven/src/test/java"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession_2/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession_3/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession_4/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession_6/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession_8/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession10_Maven/src/main/java"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession10_Maven/src/main/resource"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession10_Maven/src/test/java"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession11_Maven/src/main/java"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession11_Maven/src/main/resource"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession11_Maven/src/test/java"/>
+	<classpathentry kind="src" path="JAVA_CORE/Java_lession5/src"/>
+	<classpathentry kind="src" path="JAVA_CORE/TemplateFinalExam_MyCreate/src/main/java"/>
+	<classpathentry kind="src" path="JAVA_CORE/TemplateFinalExam_MyCreate/src/main/resource"/>
+	<classpathentry kind="src" path="JAVA_CORE/TemplateFinalExam_MyCreate/src/test/java"/>
+	<classpathentry kind="src" path="Lession_2_Servlet/src"/>
+	<classpathentry kind="src" path="SPRING BOOT/3Layers/.mvn/wrapper"/>
+	<classpathentry kind="src" path="SPRING BOOT/3Layers/src/main/java"/>
+	<classpathentry kind="src" path="SPRING BOOT/3Layers/src/test/java"/>
+	<classpathentry kind="src" path="SPRING BOOT/BeanAndInternationalizationValis/.mvn/wrapper"/>
+	<classpathentry kind="src" path="SPRING BOOT/BeanAndInternationalizationValis/src/main/java"/>
+	<classpathentry kind="src" path="SPRING BOOT/BeanAndInternationalizationValis/src/test/java"/>
+	<classpathentry kind="src" path="SPRING BOOT/CRUDValidation/.mvn/wrapper"/>
+	<classpathentry kind="src" path="SPRING BOOT/CRUDValidation/src/main/java"/>
+	<classpathentry kind="src" path="SPRING BOOT/CRUDValidation/src/test/java"/>
+	<classpathentry kind="lib" path="Ad_Lession_3/WebContent/WEB-INF/lib/mysql-connector-java-8.0.20.jar"/>
+	<classpathentry kind="lib" path="Ad_Lession_6/target/Ad_Lession_6-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="Ad_LESSION4_HIBERNATE/target/Ad_LESSION4_HIBERNATE-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="FINAL_EXAM/target/FINAL_EXAM-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="JAVA_CORE/Java_lession_10/bin/mysql-connector-java-8.0.21.jar"/>
+	<classpathentry kind="lib" path="JAVA_CORE/Java_lession_10/lib/mysql-connector-java-8.0.21.jar"/>
+	<classpathentry kind="lib" path="SPRING BOOT/3Layers/target/3Layers-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="SPRING BOOT/3Layers/target/classes/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="SPRING BOOT/CRUDValidation/target/CRUDValidation-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="Ad_LESSION4_HIBERNATE/target/classes"/>
+</classpath>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="3Layers/.mvn/wrapper"/>
+	<classpathentry kind="src" path="3Layers/src/main/java"/>
+	<classpathentry kind="src" path="3Layers/src/test/java"/>
+	<classpathentry kind="src" path="BeanAndInternationalizationValis/.mvn/wrapper"/>
+	<classpathentry kind="src" path="BeanAndInternationalizationValis/src/main/java"/>
+	<classpathentry kind="src" path="BeanAndInternationalizationValis/src/test/java"/>
+	<classpathentry kind="src" path="CRUDValidation/.mvn/wrapper"/>
+	<classpathentry kind="src" path="CRUDValidation/src/main/java"/>
+	<classpathentry kind="src" path="CRUDValidation/src/test/java"/>
+	<classpathentry kind="lib" path="3Layers/target/3Layers-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="CRUDValidation/target/CRUDValidation-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="3Layers/target/classes"/>
+</classpath>

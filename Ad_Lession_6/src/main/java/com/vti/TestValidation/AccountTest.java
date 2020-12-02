@@ -10,7 +10,7 @@ public class AccountTest {
 //		AccountDto accountCreate = new AccountDto("Neo Nguyen", "", "Neo", "Nguyen");
 //		controller.createAccount(accountCreate);
 		
-		AccountDto accountDto = new AccountDto((short) 1, "My@gmail.com", "NeoNguyen");
+		AccountDto accountDto = new AccountDto((short) 0, "My@gmail.com", "NeoNguyen");
 		controller.updateAccount(accountDto);
 	}
 }

@@ -16,19 +16,26 @@ function clickNaviViewList() {
 var employees = [];
 var counter = 0;
 
-function Employee(name, department, phone) {
+function Employee(id, name) {
     this.id = ++counter;
     this.name = name;
-    this.department = department;
-    this.phone = phone;
+}
+
+function Employee(name) {
+    this.name = name;
 }
 
 function initEmployee() {
 
-    var url = "https://5fa3f6a7f10026001618e3ae.mockapi.io/Employee";
-    //connect with backend
+    var url = "http://localhost:8080/api/v1/departments";
+    //Call API from server
 
     $.get(url, function(data, status) {
+        //error
+        if (status == "error") {
+            alert("Error when loading data");
+            return;
+        }
         employees = data;
         console.log(data);
         initTable();
@@ -43,8 +50,6 @@ function initTable() {
         $('tbody').append(
             '<tr>' +
             '<td>' + item.name + '</td>' +
-            '<td>' + item.department + '</td>' +
-            '<td>' + item.phone + '</td>' +
             '<td>' +
             '<a class="edit" title="Edit" data-toggle="tooltip" onclick="openUpdateModel(' + item.id + ')"><i class="material-icons">&#xE254;</i></a>' +
             '<a class="delete" title="Delete" data-toggle="tooltip"  onclick="confirmDelete(' + item.id + ')"><i class="material-icons">&#xE872;</i></a>' +
@@ -55,8 +60,8 @@ function initTable() {
 }
 
 function openAddModal() {
-    ShowModal();
     resetForm();
+    ShowModal();
 }
 
 function HideModal() {
@@ -68,46 +73,56 @@ function ShowModal() {
 }
 
 function addEmployee() {
+
+    //lấy data từ Modal ra
     var name = $("#name").val();
-    var department = $("#department").val();
-    var phone = $("#phone").val();
 
-    // validate ==> return;
+    //khai báo employee dưới dạng json
+    var employee = { name: name };
+    console.log(name);
 
-    var url = "https://5fa3f6a7f10026001618e3ae.mockapi.io/Employee";
-    var newEmployee = new Employee(name, department, phone);
-    console.log(newEmployee);
-    $.post(url, newEmployee, function(data, status) {
-        initEmployee();
-        HideModal();
-    })
+    $.ajax({
+        url: 'http://localhost:8080/api/v1/departments',
+        type: 'POST',
+        data: JSON.stringify(employee), // body
+        contentType: "application/json", // type of body (json, xml, text)
+        // dataType: 'json', // datatype return
+        success: function(data, textStatus, xhr) {
+            HideModal();
+            showSuccessAlert();
+            initEmployee();
+        },
+        error(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
+
+    // validate ==> return
+
+    // var url = "http://localhost:8080/api/v1/departments";
+    // var newEmployee = new Employee(name);
+    // console.log(newEmployee);
+    // $.post(url, newEmployee, function(data, status) {
+    //     initEmployee();
+    //     HideModal();
+    // })
 }
 
 function resetForm() {
-    $("#id").val() = "";
-    $("#name").val() = "";
-    $("#department").val() = "";
-    $("#phone").val() = "";
+    $("#id").val("");
+    $("#name").val("");
 }
 
 function openUpdateModel(id) {
-    ShowModal();
 
     // get index employee
     var index = employees.findIndex(x => x.id == id);
-
-    var id = document.getElementById("id").value;
-    var name = document.getElementById("name").value;
-    var department = document.getElementById("department").value;
-    var phone = document.getElementById("phone").value;
-
-
     // fill data for index
-    employees[index].id = id;
-    employees[index].name = name;
-    employees[index].department = department;
-    employees[index].phone = phone;
-
+    document.getElementById("id").value = employees[index].id;
+    document.getElementById("name").value = employees[index].name;
+    ShowModal();
 
     // // Cách 2: gọi theo J Query
 
@@ -118,41 +133,55 @@ function openUpdateModel(id) {
 }
 
 function saveNewInfor() {
-    openUpdateModel();
-    // var id = document.getElementById("id").value;
-    // var name = document.getElementById("name").value;
-    // var department = document.getElementById("department").value;
-    // var phone = document.getElementById("phone").value;
 
-    // validate ==> return;
-    // employees.push(new Employee(name, department, phone));
+    //lấy data vừa nhập vào
+    var id = document.getElementById("id").value;
+    var name = document.getElementById("name").value;
+
+    //validate ==> return
+    var employee = { name: name };
+
+    $.ajax({
+        url: 'http://localhost:8080/api/v1/departments/' + id,
+        type: 'PUT',
+        data: JSON.stringify(employee), //parse sang file Json của body
+        contentType: "application/json", //data ném lên là file(text, json, xml)
+        //datatype: 'json'. kiểu trả về server dưới dạng json
+        success: function(result) {
+            // success
+            HideModal();
+            showSuccessAlert();
+            initEmployee();
+        },
+        error(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
 
     // var index = employees.findIndex(x => x.id == id);
 
-    // // update employees
+    // //  update employees
     // employees[index].name = name;
-    // employees[index].department = department;
-    // employees[index].phone = phone;
 
-    HideModal();
-    initEmployee();
-    showSuccessAlert();
+
+    // HideModal();
+    // initEmployee();
+    // showSuccessAlert();
 }
 
 function save() {
     var id = document.getElementById("id").value;
 
     if (id == null || id == "") {
-        addEmployee()
+        addEmployee();
 
     } else {
-        saveNewInfor()
+        saveNewInfor();
     }
 }
 
-function showSuccessAlert() {
-
-}
 
 function confirmDelete(id) {
 
@@ -161,13 +190,35 @@ function confirmDelete(id) {
 
     var result = confirm("Do you want to delete " + name + " ?");
     if (result) {
-        deleteEmployees(index);
+        deleteEmployees(id);
     }
 }
 
-function deleteEmployees(index) {
+function deleteEmployees(id) {
+
+    $.ajax({
+        url: 'http://localhost:8080/api/v1/departments/' + id,
+        type: 'DELETE',
+        success: function(result) {
+            // success
+            showSuccessAlert();
+            initEmployee();
+        },
+        error(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
+
     // TODO validate
-    employees.splice(index, 1);
-    console.log(employees);
-    initTable();
+    // employees.splice(index, 1);
+    // console.log(employees);
+    // initTable();
+}
+
+function showSuccessAlert() {
+    $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+        $("#success-alert").slideUp(500);
+    });
 }

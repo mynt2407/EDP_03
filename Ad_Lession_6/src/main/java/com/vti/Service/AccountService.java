@@ -40,11 +40,11 @@ public class AccountService {
 		repository.createAccount(entity);
 	}
 
-	public Account getAccountById(@NotNull int id) {
+	public Account getAccountById(@NotNull short id) {
 		return repository.getAccountById(id);
 	}
 
-	public boolean isAccountExistById(@NotNull int id) {
+	public boolean isAccountExistById(@NotNull short id) {
 		return repository.isAccountExistById(id);
 	}
 
