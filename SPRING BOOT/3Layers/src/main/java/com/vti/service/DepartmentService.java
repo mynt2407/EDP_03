@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vti.Utils.Paging;
+import com.vti.Utils.Sorting;
 import com.vti.entity.Department;
+import com.vti.filter.FilterDepartment;
 import com.vti.repository.IDepartmentRepository;
 
 @Service
@@ -15,8 +18,8 @@ public class DepartmentService implements IDepartmentService {
 	private IDepartmentRepository repository;
 
 	@Override
-	public List<Department> getAllDepartment() {
-		return repository.getAllDepartment();
+	public List<Department> getAllDepartment(Paging paging, Sorting sort, FilterDepartment filter,  String search) {
+		return repository.getAllDepartment(paging,sort, filter,  search );
 	}
 
 	@Override

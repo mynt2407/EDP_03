@@ -2,12 +2,14 @@ package com.vti.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.vti.entity.Department;
 
 public interface IDepartmentService {
 
 
-	public List<Department> getAllDepartments();
+	public Page<Department> getAllDepartments(int pageNumber, int pageSize, String sortType, String sortField);
 
 	public Department getDepartmentByID(short id);
 

@@ -2,15 +2,23 @@ package com.vti.repository;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
+import com.vti.Utils.Paging;
+import com.vti.Utils.Sorting;
 import com.vti.entity.Department;
+import com.vti.filter.FilterDepartment;
 
 @Repository
 public class DepartmentRepository implements IDepartmentRepository {
-	
+
 	com.vti.Utils.HibernateUtils hibernateUtils;
 
 	public DepartmentRepository() {
@@ -18,16 +26,46 @@ public class DepartmentRepository implements IDepartmentRepository {
 		hibernateUtils = com.vti.Utils.HibernateUtils.getInstance();
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Department> getAllDepartment() {
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	public List<Department> getAllDepartment(Paging paging, Sorting sort, FilterDepartment filter, String search) {
 		Session session = null;
 		try {
 			// get session
 			session = hibernateUtils.openSession();
 
 			// create hql query
-			Query<Department> query = session.createQuery("FROM Department");
-			return query.list();
+			Criteria criteria = session.createCriteria(Department.class);
+
+			// Query<Department> query = session.createQuery("FROM Department");
+
+			//search
+			if (!StringUtils.isEmpty(search)) {
+				Criterion searchByName = Restrictions.ilike("name", "%" + search + "%" );
+				//Criterion searchByID = Restrictions.ilike("id", search);
+				
+				criteria.add(searchByName);
+			}
+			
+			//filter
+			//min member
+			if (null != filter.getMinMember()) {
+				criteria.add(Restrictions.gt("totalMember", filter.getMinMember().shortValue()));
+			}
+			//max member
+			if (null != filter.getMaxMember()) {
+				criteria.add(Restrictions.lt("totalMember", filter.getMaxMember().shortValue()));
+			}
+			
+			// sorting
+			criteria.addOrder(sort.getSortType().equals("ASC") ? Order.asc(sort.getSortField())
+					: Order.desc(sort.getSortField()));
+
+			// paging
+			criteria.setFirstResult((paging.getPageNumber() - 1) * paging.getPageSize());
+			criteria.setMaxResults(paging.getPageSize());
+
+			return criteria.list();
+
 		} finally {
 			if (session != null) {
 				session.close();

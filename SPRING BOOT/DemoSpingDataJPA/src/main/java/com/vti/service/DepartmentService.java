@@ -3,6 +3,10 @@ package com.vti.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.vti.entity.Department;
@@ -14,9 +18,12 @@ public class DepartmentService implements IDepartmentService {
 	@Autowired
 	private IDepartmentRepository departmentRepository;
 
-	@Override
-	public List<Department> getAllDepartments() {
-		return departmentRepository.findAll();
+	public Page<Department> getAllDepartments(int pageNumber, int pageSize, String sortType, String sortField) {
+		Sort sort = sortType.equals("DESC") ? Sort.by(sortField).descending() : Sort.by(sortField).ascending();
+		Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
+				
+		Page<Department> page = departmentRepository.findAll(pageable);
+		return page;
 	}
 
 	@Override
@@ -57,4 +64,5 @@ public class DepartmentService implements IDepartmentService {
 		return false;
 	}
 
+	
 }

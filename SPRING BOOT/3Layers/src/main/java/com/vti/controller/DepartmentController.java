@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vti.Utils.Paging;
+import com.vti.Utils.Sorting;
 import com.vti.dto.DepartmentDTO;
 import com.vti.entity.Department;
+import com.vti.filter.FilterDepartment;
 import com.vti.service.IDepartmentService;
 
 @RestController
@@ -29,9 +32,18 @@ public class DepartmentController {
 	private IDepartmentService service;
 
 	@GetMapping
-	public ResponseEntity<?> getAllDepartment() {
+	public ResponseEntity<?> getAllDepartment(Paging paging, Sorting sort, FilterDepartment filter, String search) {
+		//set default 
+		if (paging == null) {
+			paging = new Paging(10, 1);
+		}
+		if (sort == null || sort.getSortField() == null || sort.getSortType() == null) {
+			sort = new Sorting("name", "ASC");
+		}
+		
+		
 		// get data
-		List<Department> entities = service.getAllDepartment();
+		List<Department> entities = service.getAllDepartment(paging, sort, filter, search);
 
 //		List<String> dtos = new ArrayList<>();
 //

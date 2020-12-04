@@ -24,6 +24,9 @@ public class Department implements Serializable {
 	@Column(name = "DepartmentName", nullable = false, length = 30, unique = true)
 	private String name;
 
+	@Column(name = "TotalMember")
+	private short totalMember;
+	
 	public Department() {
 	}
 
@@ -45,6 +48,15 @@ public class Department implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+
+	public short getTotalMember() {
+		return totalMember;
+	}
+
+	public void setTotalMember(short totalMember) {
+		this.totalMember = totalMember;
 	}
 
 	@Override

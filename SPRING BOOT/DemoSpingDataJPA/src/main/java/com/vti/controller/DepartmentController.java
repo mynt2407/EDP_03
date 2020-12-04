@@ -3,6 +3,7 @@ package com.vti.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vti.DepartmentDTO.DepartmentDTO;
@@ -27,9 +29,14 @@ public class DepartmentController {
 	private IDepartmentService service;
 
 	@GetMapping()
-	public ResponseEntity<?> getAllDepartments() {
-		List<Department> entities = service.getAllDepartments();
-		return new ResponseEntity<List<Department>>(entities, HttpStatus.OK);
+	public ResponseEntity<?> getAllDepartments(
+			@RequestParam(defaultValue = "1") int pageNumber,
+			@RequestParam(defaultValue = "10") int pageSize,
+			@RequestParam(defaultValue = "DESC") String sortType,
+			@RequestParam(defaultValue = "id") String sortField) 
+	{
+		Page<Department> entities = service.getAllDepartments(pageNumber, pageSize, sortType, sortField);
+		return new ResponseEntity<Page<Department>>(entities, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}")
@@ -56,6 +63,5 @@ public class DepartmentController {
 		service.deleteDepartment(id);
 		return new ResponseEntity<String>("Delete successfully!", HttpStatus.OK);
 	}
-	
-	
+
 }
