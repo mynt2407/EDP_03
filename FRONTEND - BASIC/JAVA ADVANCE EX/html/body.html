@@ -1,0 +1,63 @@
+<div class="container">
+
+    <h5><b>Manager Group </b><span><i class='fas fa-users' style='font-size:15px; color: cornflowerblue;'></i></span></h5>
+    <h4><b>List group</b></h4>
+
+    <div class="formsearch">
+        <span>
+            <form class="example item5" action="/action_page.php" style="margin:auto;max-width:300px">
+            <input type="text" placeholder="Search.." name="search2">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </span>
+        <span><i class='fas fa-plus' style='font-size:24px'></i> </span>
+        <span> <i class='fas fa-sync' style='font-size:24px ; padding-left: 30px;'></i> </span>
+        <span> <i class='fas fa-trash-alt' style='font-size:24px ; padding-left: 30px;' ></i></span>
+    </div>
+    <br>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <form>
+                        <input type="checkbox" value="">
+                    </form>
+                </th>
+                <th>STT</th>
+                <th onclick="w3.sortHTML('#myTable', '.item', 'td:nth-child(1)')" style="cursor:pointer">Group Name</th>
+                <th>Member</th>
+                <th>Creator</th>
+                <th>Create Date</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            <tr>
+                <td>
+                    <form>
+                        <input type="checkbox" value="">
+                    </form>
+                </td>
+                <td>John</td>
+                <td>Doe</td>
+                <td>2</td>
+                <td>ABC</td>
+                <td>1/1/2020</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <form>
+                        <input type="checkbox" value="">
+                    </form>
+                </td>
+                <td>ABC</td>
+                <td>Dah</td>
+                <td>2</td>
+                <td>ABC</td>
+                <td>1/1/2020</td>
+            </tr>
+
+        </tbody>
+    </table>

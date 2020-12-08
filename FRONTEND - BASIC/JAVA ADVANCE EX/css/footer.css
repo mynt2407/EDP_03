@@ -1,0 +1,8 @@
+.footer {
+    background: red;
+    height: 30px;
+    color: white;
+    /* text-align: center; */
+    display: flex;
+    align-items: flex-end;
+}

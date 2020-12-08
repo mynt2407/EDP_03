@@ -20,17 +20,14 @@ body {
     flex: 7;
 }
 
-.content {
+
+/* .content {
     display: flex;
     flex-direction: row;
-}
+} */
 
-.content>article {
+
+/* .content>article {
     flex: 4;
     min-height: 530px;
-}
-
-.footer {
-    background: red;
-    height: 30px;
-}
+} */
