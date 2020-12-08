@@ -1,0 +1,25 @@
+/* .header {
+    height: 80px;
+    background-color: grey;
+    border: 1px solid black;
+}
+
+img {
+    width: 110px;
+    height: 74px;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+ */
+
+.p-0 {
+    height: 100px;
+}
+
+
+/* .header:hover {
+    background-color: white;
+} */
