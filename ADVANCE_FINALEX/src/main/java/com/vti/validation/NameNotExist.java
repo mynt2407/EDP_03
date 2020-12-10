@@ -1,5 +1,4 @@
-package com.vti.Vaidation;
-
+package com.vti.validation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -15,10 +14,10 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 //@Repeatable(List.class)
-@Constraint(validatedBy = IDExistValidator.class)
+@Constraint(validatedBy = NameNotExistValidator.class)
 
-public @interface IDExist {
-	String message() default "{accountDto.id.IDExist}";
+public @interface NameNotExist {
+	String message() default "{CreateDto.name.NameNotExist}";
 
 	Class<?>[] groups() default {};
 
@@ -28,6 +27,6 @@ public @interface IDExist {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Documented
 	@interface List {
-		IDExist[] value();
+		NameNotExist[] value();
 	}
 }

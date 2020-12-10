@@ -3,9 +3,6 @@ package com.vti.dto;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
@@ -14,7 +11,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 import com.vti.Vaidation.EmailNotExist;
-import com.vti.Vaidation.IDExist;
 import com.vti.Vaidation.UserNameNotExist;
 import com.vti.entity.Account;
 
