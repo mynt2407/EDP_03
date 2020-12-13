@@ -2,7 +2,6 @@ package com.vti.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.vti.dto.ViewGroupDto;
 
 @Entity
 @Table(name = "`Group`", catalog = "FinalAdvance")
@@ -33,8 +34,8 @@ public class Group {
 
 	// Cấu hình One to one để lấy thông tin account
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "creator_id", referencedColumnName = "account_id")
+	@OneToOne()
+	@JoinColumn(name = "creator_id", referencedColumnName = "account_id", nullable = false)
 	private Account creator;
 
 	@Column(name = "create_date")
@@ -47,6 +48,14 @@ public class Group {
 
 	public Group(String name) {
 		this.name = name;
+	}
+
+	public Group(short id, String name, short member, Account creator, Date createDate) {
+		this.id = id;
+		this.name = name;
+		this.member = member;
+		this.creator = creator;
+		this.createDate = createDate;
 	}
 
 	public short getId() {
@@ -89,21 +98,9 @@ public class Group {
 		this.createDate = createDate;
 	}
 
-//	public List<GroupAccount> getAccounts() {
-//		return accounts;
-//	}
-//
-//	public void setAccounts(List<GroupAccount> accounts) {
-//		this.accounts = accounts;
-//	}
-
 	// Để hiển thị cho người dùng xem cần convert từ entity --> Dto
 
-//	public  toDto() {
-//		return new Group(id, name, member, creator.getFullname(), createDate);
-//	}
-
-	public Group toEntity() {
-		return new Group(name);
+	public ViewGroupDto toDto() {
+		return new ViewGroupDto(id, name, member, creator.getFullname(), createDate);
 	}
 }

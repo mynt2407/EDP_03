@@ -2,8 +2,6 @@ package com.vti.dto;
 
 import java.util.Date;
 
-import com.vti.entity.Group;
-
 public class ViewGroupDto {
 
 	private short id;

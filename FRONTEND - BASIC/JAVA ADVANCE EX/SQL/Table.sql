@@ -21,8 +21,8 @@ CREATE TABLE `Account`(
 CREATE TABLE `Group`(
 	group_id 		SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	group_name 		VARCHAR(50) UNIQUE KEY NOT NULL,
-    `member` 		SMALLINT UNSIGNED DEFAULT (0),
-    creator_id		SMALLINT UNSIGNED,
+    `member` 		SMALLINT UNSIGNED DEFAULT '0',
+    creator_id		SMALLINT UNSIGNED  DEFAULT '1',
     create_date 	DATETIME DEFAULT NOW(),
 	FOREIGN KEY (creator_id) REFERENCES `Account` (account_id)
 );

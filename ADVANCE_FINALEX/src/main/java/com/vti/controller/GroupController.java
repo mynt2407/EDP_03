@@ -1,5 +1,8 @@
 package com.vti.controller;
 
+import java.util.List;
+import java.util.function.Function;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vti.dto.CreateGroupDto;
 import com.vti.dto.UpdateGroupDto;
+import com.vti.dto.ViewGroupDto;
 import com.vti.entity.Group;
 import com.vti.service.IGroupService;
 
@@ -29,6 +33,7 @@ import com.vti.service.IGroupService;
 @Validated
 
 public class GroupController {
+
 	@Autowired
 	private IGroupService service;
 
@@ -37,8 +42,18 @@ public class GroupController {
 	public ResponseEntity<?> getAllGroups(@RequestParam(defaultValue = "1") int pageNumber,
 			@RequestParam(defaultValue = "10") int pageSize, @RequestParam(defaultValue = "DESC") String sortType,
 			@RequestParam(defaultValue = "id") String sortField) {
+
+		// convert Page<Group> --> Page<ViewGroupDto>
+
 		Page<Group> entities = service.getAllGroups(pageNumber, pageSize, sortType, sortField);
-		return new ResponseEntity<Page<Group>>(entities, HttpStatus.OK);
+		Page<ViewGroupDto> dtoPage = entities.map(new Function<Group, ViewGroupDto>() {
+			@Override
+			public ViewGroupDto apply(Group entity) {
+				return entity.toDto();
+			}
+		});
+
+		return new ResponseEntity<Page<ViewGroupDto>>(dtoPage, HttpStatus.OK);
 	}
 
 //get group by id
@@ -56,19 +71,28 @@ public class GroupController {
 
 //edit group
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<?> updateGroup(@Valid @PathVariable(name = "id") short id, String newName,
-			@RequestBody UpdateGroupDto dto) {
-		Group group = dto.toEntity();
-		group.setName(newName);
-		service.createGroup(group);
+	public ResponseEntity<?> updateGroup(@Valid @PathVariable(name = "id") short id, @RequestBody UpdateGroupDto dto) {
+//		if (id == 20) {
+//			throw new EntityNotFoundException("id bạn tìm không có");
+//		}
+		Group group = service.getGroupByID(id);
+		group.setName(dto.getName());
+		service.updateGroup(group);
 		return new ResponseEntity<String>("Update successfully!", HttpStatus.OK);
 	}
 
 // delete
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<?> deleteGroup(@Valid @PathVariable(name = "id") short id) {
+	public ResponseEntity<?> deleteGroup(@PathVariable(name = "id") short id) {
 		service.deleteGroup(id);
 		return new ResponseEntity<String>("Delete successfully!", HttpStatus.OK);
+	}
+
+	// delete array id
+	@DeleteMapping()
+	public ResponseEntity<?> deleteGroupByIds(@RequestParam List<Short> ids) {
+		service.deleteGroupByIds(ids);
+		return new ResponseEntity<String>("Delete many groups successfully!", HttpStatus.OK);
 	}
 
 }

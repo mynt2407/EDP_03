@@ -1,7 +1,8 @@
 package com.vti.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotBlank;
 
 import com.vti.entity.Group;
 import com.vti.validation.NameNotExist;

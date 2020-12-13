@@ -1,5 +1,7 @@
 package com.vti.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.vti.entity.Group;
@@ -17,6 +19,8 @@ public interface IGroupService {
 	public void updateGroup(Group group);
 
 	public void deleteGroup(short id);
+
+	public void deleteGroupByIds(List<Short> ids);
 
 	public boolean isGroupExistsByID(short id);
 
