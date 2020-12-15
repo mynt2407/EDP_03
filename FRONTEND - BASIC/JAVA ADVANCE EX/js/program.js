@@ -18,9 +18,9 @@ var counter = 0;
 function Group(id, name) {
     this.id = ++counter;
     this.name = name;
-    this.member = member;
-    this.fullname = fullname;
-    this.createDate = createDate;
+    // this.member = member;
+    // this.fullname = fullname;
+    // this.createDate = createDate;
 }
 
 function initGroup() {
@@ -51,7 +51,7 @@ function filltoTable() {
         body += '<tr>' +
             '<td>' + '<form style="padding-left: 10px;"><input id="input' + index + '" type="checkbox" value=""> </form>' + '</td>' +
             '<td>' + (index + 1) + '</td>' +
-            '<td onclick = "viewDetailGroup()" >' +   '<u>' + item.name + '</u>'  +  '</td>' +
+            '<td onclick = "viewDetailGroup(' + item.id + ')"  style = "color: blue;" >' + item.name + '</td>' +
             // '<td>' + '<a href= "../html/viewdetail.html">' + item.name + '</a>' + '</td>' +
             '<td>' + item.member + '</td>' +
             '<td>' + item.fullname + '</td>' +
@@ -71,6 +71,8 @@ function openCreateModal() {
 function resetForm() {
     $("#id").val("");
     $("#name").val("");
+    $("#error_name").val("");
+
 }
 
 // Modal name duoc dinh nghia o file ViewList
@@ -102,19 +104,22 @@ function SaveCreateGroup() {
             //showSuccessAlert();
             initGroup();
         },
-        error(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
+        // in ra message tu duong link api
+
+        error(error, textStatus, errorThrown) {
+            if (error.status == 400) {
+                document.getElementById("error_name").innerHTML = error.responseJSON.errors[0].message;
+            } else {
+                console.log(error);
+            }
+
         }
     });
 }
 
-function viewDetailGroup() {
-    $(".main").load("viewdetail.html");
-    GetGroupById(id);
-}
-function GetGroupById(id) {
+
+function openUpdateTable(id) {
+    var group = "";
     var url = "http://localhost:8080/api/v1/groups" + id;
 
     //Call API from server
@@ -125,25 +130,104 @@ function GetGroupById(id) {
             alert("Error when loading data");
             return;
         }
-        groups = data.content;
-        console.log(groups);
-        fillToDetailForm(id);
+        group = data;
+        console.log(group);
     });
 }
 
-function fillToDetailForm(id) {
 
-    // get index groups
-    var index = groups.findIndex(x => x.id == id);
-    console.log(index);
-    // fill data for index
-    document.getElementById("id").value = groups[index].id;
-    document.getElementById("name").value = groups[index].name;
-    document.getElementById("member").value = groups[index].member;
-    document.getElementById("fullname").value = groups[index].fullname;
-    document.getElementById("createDate").value = groups[index].createDate;
+//View detail group
+function viewDetailGroup(id) {
+    // display detail page
+    $(".main").load("viewdetail.html", function() {
+        // get data
+        GetGroupById(id);
+    });
 }
 
+
+function GetGroupById(id) {
+    var url = 'http://localhost:8080/api/v1/groups/' + id;
+
+    //Call API from server
+    $.get(url, function(data, status) {
+        //error
+        if (status == "error") {
+            alert("Error when loading data");
+            return;
+        }
+        fillToDetailForm(data);
+
+    });
+}
+
+function fillToDetailForm(data) {
+    document.getElementById("groupId").innerHTML = data.id;
+    document.getElementById("groupName").innerHTML = data.name;
+    document.getElementById("Creator").innerHTML = data.creator.fullname;
+    document.getElementById("CreateDate").innerHTML = data.createDate;
+    document.getElementById("Member").innerHTML = data.member;
+}
+
+//Bấm vào pen để edit name
+function openUpdateModal() {
+
+    var id = document.getElementById("groupId").innerHTML;
+    var url = 'http://localhost:8080/api/v1/groups/' + id;
+
+    var group = "";
+
+    showModal();
+
+    //Call API from server
+    $.get(url, function(data, status) {
+        //error
+        if (status == "error") {
+            alert("Error when loading data");
+            return;
+        }
+        group = data;
+        console.log(group);
+        document.getElementById("idGroup").innerHTML = group.id;
+        document.getElementById("name").value = group.name;
+    });
+
+}
+
+function updateNewName() {
+    //lấy data vừa nhập vào
+    var id = document.getElementById("idGroup").innerHTML;
+    var name = document.getElementById("name").value;
+
+    //validate ==> return
+    var group = { name: name };
+
+    $.ajax({
+        url: 'http://localhost:8080/api/v1/groups/' + id,
+        type: 'PUT',
+        data: JSON.stringify(group), //parse sang file Json của body
+        contentType: "application/json", //data ném lên là file(text, json, xml)
+        //datatype: 'json'. kiểu trả về server dưới dạng json
+        success: function(result) {
+            // success
+            hideModal();
+            //showSuccessAlert();
+            //initGroup();
+        },
+        
+        // in ra message tu duong link api
+
+        error(error, textStatus, errorThrown) {
+            if (error.status == 400) {
+                document.getElementById("error_name").innerHTML = error.responseJSON.errors[0].message;
+            } else {
+                console.log(error);
+            }
+
+        }
+    });
+
+}
 
 function confirmDelete(index) {
     var deleteIds = [];

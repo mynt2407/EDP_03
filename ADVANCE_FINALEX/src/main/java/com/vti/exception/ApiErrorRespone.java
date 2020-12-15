@@ -1,5 +1,7 @@
 package com.vti.exception;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.HttpStatus;
 
 public class ApiErrorRespone {
@@ -13,6 +15,9 @@ public class ApiErrorRespone {
 		this.detailMessage = detailMessage;
 	}
 	
+	public ApiErrorRespone(HttpStatus badRequest, ConstraintViolationException exception) {
+	}
+
 	public HttpStatus getStatus() {
 		return status;
 	}

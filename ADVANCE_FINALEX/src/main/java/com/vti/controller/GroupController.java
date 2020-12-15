@@ -3,6 +3,7 @@ package com.vti.controller;
 import java.util.List;
 import java.util.function.Function;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,11 @@ public class GroupController {
 //get group by id
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> getGroupByID(@PathVariable(name = "id") short id) {
+
+		if (service.isGroupExistsByID(id) == false) {
+			throw new EntityNotFoundException("Id bạn vừa nhập vào ko có");
+		}
+		
 		return new ResponseEntity<Group>(service.getGroupByID(id), HttpStatus.OK);
 	}
 
@@ -71,10 +77,8 @@ public class GroupController {
 
 //edit group
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<?> updateGroup(@Valid @PathVariable(name = "id") short id, @RequestBody UpdateGroupDto dto) {
-//		if (id == 20) {
-//			throw new EntityNotFoundException("id bạn tìm không có");
-//		}
+	public ResponseEntity<?> updateGroup(@PathVariable(name = "id") short id, @Valid @RequestBody UpdateGroupDto dto) {
+
 		Group group = service.getGroupByID(id);
 		group.setName(dto.getName());
 		service.updateGroup(group);

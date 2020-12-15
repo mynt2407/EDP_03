@@ -1,9 +1,7 @@
 package com.vti.service;
 
-import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,6 +44,7 @@ public class GroupService implements IGroupService {
 
 	@Override
 	public void createGroup(Group group) {
+		
 		// Set default Foreign key khi chưa login
 
 		short defaultAccountID = 1;
