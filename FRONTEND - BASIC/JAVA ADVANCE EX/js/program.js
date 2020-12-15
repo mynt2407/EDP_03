@@ -107,6 +107,7 @@ function SaveCreateGroup() {
         // in ra message tu duong link api
 
         error(error, textStatus, errorThrown) {
+            console.log(error);
             if (error.status == 400) {
                 document.getElementById("error_name").innerHTML = error.responseJSON.errors[0].message;
             } else {
@@ -270,7 +271,7 @@ function deleteGroups(deleteIds) {
 
 }
 
-function deleteAll() {
+function checkAll() {
 
     // get value check
     var isCheck = document.getElementById("inputTotal").checked
