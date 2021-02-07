@@ -9,8 +9,8 @@ public class Exercise_2 {
 //		question1();
 //		question2();
 //		question3();
-//		question4();
-		question5();
+		question4();
+//		question5();
 //		question6();
 	}
 
@@ -29,6 +29,7 @@ public class Exercise_2 {
 
 			float element = numbers[k];
 			boolean isSame = false;
+			
 			for (int j = 0; j < numbers.length; j++) {
 				if (numbers[j] == element && j != k) {
 					isSame = true;
@@ -123,8 +124,10 @@ public class Exercise_2 {
 		int sum = 0;
 		for (int j = 0; j < a.length(); j++) {
 			int a1 = (int) Math.pow(10, j + 1);
+			System.out.println("a la " + a1);
 			int b1 = (int) Math.pow(10, j);
-
+			System.out.println("b la " +b1);
+			
 			int element = (soNguyen % a1) / b1;
 
 			sum += element;

@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.vti.entity.CanBo;
-import com.vti.entity.CongNhan;
-import com.vti.entity.KySu;
-import com.vti.entity.NhanVien;
-
 public class QLCB {
 
 	private List<CanBo> canBos;
@@ -17,7 +12,6 @@ public class QLCB {
 	public QLCB() {
 		canBos = new ArrayList<CanBo>(); // khởi tạo 1 thằng rỗng 
 		scanner = new Scanner(System.in);
-
 	}
 
 	public QLCB(List<CanBo> canBos) { // khởi tạo thêm, array list này có sẵn 1 vài thằng rồi

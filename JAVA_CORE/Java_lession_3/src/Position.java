@@ -1,5 +1,5 @@
 
 public class Position {
-byte id;
-PositionName positionName;
+	byte id;
+	PositionName positionName;
 }

@@ -11,7 +11,7 @@ public class Exercise_1 {
 //		Với 1 inch = 2.54 cm và 1 foot = 12 inches
 
 //	soThuc();
-//	convertToHour();
+	convertToHour();
 	soNguyen();
 //	tinhHieu();
 //	checkPhanDu();
@@ -68,6 +68,7 @@ public class Exercise_1 {
 			System.out.println("Moi ban nhap so thu " + (i + 1) + " la: ");
 			numbers[i] = scanner2.nextInt();
 		}
+		
 		int max = numbers[0];
 		int min = numbers[0];
 		for (int i = 1; i < numbers.length; i++) {

@@ -61,6 +61,7 @@ public class Loop_ex3 {
 		int input_number = scanner.nextInt();
 
 		int[] arrays_number = new int[input_number];
+		
 		for (int i = 0; i < arrays_number.length; i++) {
 			System.out.print("So thu " + (i + 1) + " la: ");
 			arrays_number[i] = scanner.nextInt();
@@ -79,7 +80,7 @@ public class Loop_ex3 {
 		}
 	}
 
-//	Question 3: Hãy nhập vào 16 số nguyên. In ra thành 4 dòng, 4 cột.
+//	Question 3: Hãy nhập vào 16 số nguyên. In ra thành 2 dòng, 8 cột.
 	public static void question3() {
 
 		Scanner scanner = new Scanner(System.in);
@@ -94,8 +95,8 @@ public class Loop_ex3 {
 
 		for (int i = 0; i < 2; i++) {
 			System.out.print("Hang thu " + (i + 1) + " la: ");
+			
 			for (int j = 0; j < 8; j++) {
-
 				System.out.print((inputs[j + i * 8] + " "));
 			}
 			System.out.print("\n");
@@ -134,7 +135,5 @@ public class Loop_ex3 {
 //		quả ra màn hình.
 //		Sau khi nhập đủ 10 phần tử theo đúng thứ tự như đề bài thì
 //		thực hiện sắp xếp theo chiều tăng dần, giảm dần
-	
-	
 
 }

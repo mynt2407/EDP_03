@@ -6,7 +6,7 @@ import com.sun.source.tree.WhileLoopTree;
 public class Method_ex6 {
 	public static void main(String[] args) {
 //	Question 1:
-//		Tạo method để in ra các số chẵn nguyên dương nhỏ hơn 10
+//		Táº¡o method Ä‘á»ƒ in ra cÃ¡c sá»‘ cháºµn nguyÃªn dÆ°Æ¡ng nhá»� hÆ¡n 10
 		// create account
 
 		Account account1 = new Account();
@@ -52,7 +52,7 @@ public class Method_ex6 {
 	}
 
 //	Question 2:
-//	Tạo method để in thông tin các account
+//	Táº¡o method Ä‘á»ƒ in thÃ´ng tin cÃ¡c account
 
 	public static void get_account_if(Account[] accounts) {
 		for (int j = 0; j < accounts.length; j++) {
@@ -66,7 +66,7 @@ public class Method_ex6 {
 	}
 
 //	Question 3:
-//	Tạo method để in ra các số nguyên dương nhỏ hơn 10
+//	Táº¡o method Ä‘á»ƒ in ra cÃ¡c sá»‘ nguyÃªn dÆ°Æ¡ng nhá»� hÆ¡n 10
 
 	public static void get_int() {
 		int z = 0;

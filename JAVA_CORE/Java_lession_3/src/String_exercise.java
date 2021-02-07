@@ -13,12 +13,12 @@ public class String_exercise {
 //		question8();
 //		question9();
 //		question10();
-//		question11();
+		question11();
 //		question12();
 //		question13();
 //		question14();
 //		question15();
-		question16();
+//		question16();
 	}
 
 	public static void question1() {
@@ -31,14 +31,10 @@ public class String_exercise {
 		// cach 1:
 		int spaceCount = 0;
 		String a = kiTu.trim();
+		a = a.replaceAll("\\s+", " ");
 		String[] words = a.split("\\s");
 		int count = 0;
-		for (String string : words) {
-			{
-
-			}
-			System.out.println(string);
-		}
+		System.out.println("Do dai " + words.length );
 
 	}
 

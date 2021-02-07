@@ -1,17 +1,21 @@
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomExcercise {
 	public static void main(String[] args) {
-		randomNumber();
-		randomName();
-		randomDate();
+		// randomNumber();
+		// randomName();
+		// randomDate();
+		// bubbleSort();
+		// SortArray();
+		FindCoupleNumber();
 	}
 
 	public static void randomNumber() {
 //		Question 1:
-//		In ngẫu nhiên ra 1 số nguyên
+//		In ngáº«u nhiÃªn ra 1 sá»‘ nguyÃªn
 
 		Random random = new Random();
 		int x = random.nextInt();
@@ -19,12 +23,12 @@ public class RandomExcercise {
 		System.out.println("\n");
 
 //		Question 2:
-//		In ngẫu nhiên ra 1 số thực 
+//		In ngáº«u nhiÃªn ra 1 sá»‘ thá»±c 
 		float y = random.nextFloat();
 		System.out.println(y);
 		System.out.println("\n");
 
-		// Question 7: Lấy ngẫu nhiên 1 số có 3 chữ số
+		// Question 7: Láº¥y ngáº«u nhiÃªn 1 sá»‘ cÃ³ 3 chá»¯ sá»‘
 // Cach 1:
 		int z = ThreadLocalRandom.current().nextInt(100, 1000);
 		System.out.println(z);
@@ -37,8 +41,8 @@ public class RandomExcercise {
 
 	public static void randomName() {
 //		Question 3:
-//		Khai báo 1 array bao gồm các tên của các bạn trong lớp, sau đó in ngẫu nhiên
-//		ra tên của 1 bạn
+//		Khai bÃ¡o 1 array bao gá»“m cÃ¡c tÃªn cá»§a cÃ¡c báº¡n trong lá»›p, sau Ä‘Ã³ in ngáº«u nhiÃªn
+//		ra tÃªn cá»§a 1 báº¡n
 		Random random = new Random();
 		String[] students = { "Hoa", "Mai", "Lan", "Ngoc", "Lien", "Minh" };
 		int i = random.nextInt(students.length);
@@ -48,7 +52,7 @@ public class RandomExcercise {
 
 	public static void randomDate() {
 //		Question 4:
-//		Lấy ngẫu nhiên 1 ngày trong khoảng thời gian 24-07-1995 tới ngày 20-12-1995
+//		Láº¥y ngáº«u nhiÃªn 1 ngÃ y trong khoáº£ng thá»�i gian 24-07-1995 tá»›i ngÃ y 20-12-1995
 		Random random = new Random();
 
 		int minDay = (int) LocalDate.of(1995, 7, 24).toEpochDay();
@@ -61,7 +65,7 @@ public class RandomExcercise {
 		System.out.println("\n");
 
 //	Question 5:
-//	Lấy ngẫu nhiên 1 ngày trong khoảng thời gian 1 năm trở lại đây
+//	Láº¥y ngáº«u nhiÃªn 1 ngÃ y trong khoáº£ng thá»�i gian 1 nÄƒm trá»Ÿ láº¡i Ä‘Ã¢y
 
 		int minDay1 = (int) LocalDate.of(2019, 9, 24).toEpochDay();
 		int maxDay1 = (int) LocalDate.of(2020, 9, 24).toEpochDay();
@@ -71,17 +75,84 @@ public class RandomExcercise {
 		LocalDate randomDay1 = LocalDate.ofEpochDay(randomInt1);
 		System.out.println(randomDay1);
 		System.out.println("\n");
-		
+
 //		Question 6:
-//		Lấy ngẫu nhiên 1 ngày trong quá khứ
+//		Láº¥y ngáº«u nhiÃªn 1 ngÃ y trong quÃ¡ khá»©
 
 		int now = (int) LocalDate.now().toEpochDay();
 		randomInt = now - random.nextInt(365);
 		randomDay = LocalDate.ofEpochDay(randomInt);
 		System.out.println(randomDay);
-		
-		
 
 	}
 
+	public static void bubbleSort() {
+		int[] numbers = { 5, 4, -2, 1, 10, -3, 0 };
+		int temp = 0;
+
+		for (int i = 0; i < numbers.length; i++) {
+
+			for (int j = 0; j < numbers.length - 1; j++) {
+
+				if (numbers[j] < numbers[j + 1]) {
+					// gán temp bằng number [j] và bê ra chỗ khác
+					temp = numbers[j];
+					// đổi vị trí của number[j + 1] vào vị trí j cũ
+					numbers[j] = numbers[j + 1];
+					// gán [j+ 1] bằng thằng temp
+					numbers[j + 1] = temp;
+				}
+			}
+		}
+
+		int sum = numbers[0] + numbers[1];
+		System.out.println("Tong la: " + sum);
+
+		System.out.println(Arrays.toString(numbers) + " bubbleSort");
+
+	}
+
+	public static void SortArray() {
+		int[] numbers = { 11, 2, 8, 10, 5, 99, 1, 8, 9 };
+
+		int x = numbers.length / 3;
+
+		for (int i = 0; i < x; i++) {
+
+			for (int j = 0; j < x; j++) {
+
+				System.out.println(numbers[3 * j + i]);
+			}
+		}
+	}
+
+	public static void FindCoupleNumber() {
+		int temp = 0;
+		int[] numbers = { 1, 5, 4, 7, 9, 0, -10, 13, 93, 14, 15 };
+
+		for (int i = 0; i < numbers.length; i++) {
+
+			for (int j = 0; j < numbers.length - 1; j++) {
+
+				if (numbers[j] > numbers[j + 1]) {
+					// gán temp bằng number [j] và bê ra chỗ khác
+					temp = numbers[j];
+					// đổi vị trí của number[j + 1] vào vị trí j cũ
+					numbers[j] = numbers[j + 1];
+					// gán [j+ 1] bằng thằng temp
+					numbers[j + 1] = temp;
+				}
+			}
+		}
+		System.out.println(Arrays.toString(numbers) + " bubbleSort");
+
+		int delete[] = {};
+		for (int i = 0; i < numbers.length; i++) {
+			for (int j = 0; j < numbers.length-1; j++) {	
+				 delete[] = numbers[j] - numbers[i];
+				
+			}
+		}
+		System.out.println(delete);
+	}
 }
